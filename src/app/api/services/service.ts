@@ -37,7 +37,10 @@ export class Service extends BaseService {
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  createCommentAsTaskCommentsPost$Response(params: CreateCommentAsTaskCommentsPost$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+  createCommentAsTaskCommentsPost$Response(
+    params: CreateCommentAsTaskCommentsPost$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<number>> {
     return createCommentAsTaskCommentsPost(this.http, this.rootUrl, params, context);
   }
 
@@ -51,9 +54,12 @@ export class Service extends BaseService {
    *
    * This method sends `multipart/form-data` and handles request body of type `multipart/form-data`.
    */
-  createCommentAsTaskCommentsPost(params: CreateCommentAsTaskCommentsPost$Params, context?: HttpContext): Observable<number> {
+  createCommentAsTaskCommentsPost(
+    params: CreateCommentAsTaskCommentsPost$Params,
+    context?: HttpContext,
+  ): Observable<number> {
     return this.createCommentAsTaskCommentsPost$Response(params, context).pipe(
-      map((r: StrictHttpResponse<number>): number => r.body)
+      map((r: StrictHttpResponse<number>): number => r.body),
     );
   }
 
@@ -70,7 +76,10 @@ export class Service extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getCommentsByTaskCommentsByTaskTaskIdGet$Response(params: GetCommentsByTaskCommentsByTaskTaskIdGet$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  getCommentsByTaskCommentsByTaskTaskIdGet$Response(
+    params: GetCommentsByTaskCommentsByTaskTaskIdGet$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return getCommentsByTaskCommentsByTaskTaskIdGet(this.http, this.rootUrl, params, context);
   }
 
@@ -84,14 +93,18 @@ export class Service extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getCommentsByTaskCommentsByTaskTaskIdGet(params: GetCommentsByTaskCommentsByTaskTaskIdGet$Params, context?: HttpContext): Observable<any> {
+  getCommentsByTaskCommentsByTaskTaskIdGet(
+    params: GetCommentsByTaskCommentsByTaskTaskIdGet$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.getCommentsByTaskCommentsByTaskTaskIdGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
   /** Path part for operation `getCommentPhotosByObjectCommentsByObjectObjectIdGet()` */
-  static readonly GetCommentPhotosByObjectCommentsByObjectObjectIdGetPath = '/comments/by_object/{object_id}';
+  static readonly GetCommentPhotosByObjectCommentsByObjectObjectIdGetPath =
+    '/comments/by_object/{object_id}';
 
   /**
    * Get Comment Photos By Object.
@@ -103,8 +116,16 @@ export class Service extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getCommentPhotosByObjectCommentsByObjectObjectIdGet$Response(params: GetCommentPhotosByObjectCommentsByObjectObjectIdGet$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
-    return getCommentPhotosByObjectCommentsByObjectObjectIdGet(this.http, this.rootUrl, params, context);
+  getCommentPhotosByObjectCommentsByObjectObjectIdGet$Response(
+    params: GetCommentPhotosByObjectCommentsByObjectObjectIdGet$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
+    return getCommentPhotosByObjectCommentsByObjectObjectIdGet(
+      this.http,
+      this.rootUrl,
+      params,
+      context,
+    );
   }
 
   /**
@@ -117,10 +138,12 @@ export class Service extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getCommentPhotosByObjectCommentsByObjectObjectIdGet(params: GetCommentPhotosByObjectCommentsByObjectObjectIdGet$Params, context?: HttpContext): Observable<any> {
+  getCommentPhotosByObjectCommentsByObjectObjectIdGet(
+    params: GetCommentPhotosByObjectCommentsByObjectObjectIdGet$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.getCommentPhotosByObjectCommentsByObjectObjectIdGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
-
 }

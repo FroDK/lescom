@@ -41,7 +41,10 @@ export class UsersService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getAllRolesUsersRolesGet$Response(params?: GetAllRolesUsersRolesGet$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  getAllRolesUsersRolesGet$Response(
+    params?: GetAllRolesUsersRolesGet$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return getAllRolesUsersRolesGet(this.http, this.rootUrl, params, context);
   }
 
@@ -55,9 +58,12 @@ export class UsersService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getAllRolesUsersRolesGet(params?: GetAllRolesUsersRolesGet$Params, context?: HttpContext): Observable<any> {
+  getAllRolesUsersRolesGet(
+    params?: GetAllRolesUsersRolesGet$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.getAllRolesUsersRolesGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -75,7 +81,10 @@ export class UsersService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  userListUsersGet$Response(params?: UserListUsersGet$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  userListUsersGet$Response(
+    params?: UserListUsersGet$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return userListUsersGet(this.http, this.rootUrl, params, context);
   }
 
@@ -92,7 +101,7 @@ export class UsersService extends BaseService {
    */
   userListUsersGet(params?: UserListUsersGet$Params, context?: HttpContext): Observable<any> {
     return this.userListUsersGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -109,7 +118,10 @@ export class UsersService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  profileUserUsersIdGet$Response(params: ProfileUserUsersIdGet$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  profileUserUsersIdGet$Response(
+    params: ProfileUserUsersIdGet$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return profileUserUsersIdGet(this.http, this.rootUrl, params, context);
   }
 
@@ -123,9 +135,12 @@ export class UsersService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  profileUserUsersIdGet(params: ProfileUserUsersIdGet$Params, context?: HttpContext): Observable<any> {
+  profileUserUsersIdGet(
+    params: ProfileUserUsersIdGet$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.profileUserUsersIdGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -142,7 +157,10 @@ export class UsersService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  deleteUserUsersUserIdDelete$Response(params: DeleteUserUsersUserIdDelete$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  deleteUserUsersUserIdDelete$Response(
+    params: DeleteUserUsersUserIdDelete$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return deleteUserUsersUserIdDelete(this.http, this.rootUrl, params, context);
   }
 
@@ -156,9 +174,12 @@ export class UsersService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  deleteUserUsersUserIdDelete(params: DeleteUserUsersUserIdDelete$Params, context?: HttpContext): Observable<any> {
+  deleteUserUsersUserIdDelete(
+    params: DeleteUserUsersUserIdDelete$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.deleteUserUsersUserIdDelete$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -175,7 +196,10 @@ export class UsersService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateUserUsersUserIdPatch$Response(params: UpdateUserUsersUserIdPatch$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  updateUserUsersUserIdPatch$Response(
+    params: UpdateUserUsersUserIdPatch$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return updateUserUsersUserIdPatch(this.http, this.rootUrl, params, context);
   }
 
@@ -189,10 +213,12 @@ export class UsersService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateUserUsersUserIdPatch(params: UpdateUserUsersUserIdPatch$Params, context?: HttpContext): Observable<any> {
+  updateUserUsersUserIdPatch(
+    params: UpdateUserUsersUserIdPatch$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.updateUserUsersUserIdPatch$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
-
 }

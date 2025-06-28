@@ -39,7 +39,10 @@ export class TaskTypesService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getTaskTypesAndStagesTasksTypesGet$Response(params?: GetTaskTypesAndStagesTasksTypesGet$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  getTaskTypesAndStagesTasksTypesGet$Response(
+    params?: GetTaskTypesAndStagesTasksTypesGet$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return getTaskTypesAndStagesTasksTypesGet(this.http, this.rootUrl, params, context);
   }
 
@@ -53,9 +56,12 @@ export class TaskTypesService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getTaskTypesAndStagesTasksTypesGet(params?: GetTaskTypesAndStagesTasksTypesGet$Params, context?: HttpContext): Observable<any> {
+  getTaskTypesAndStagesTasksTypesGet(
+    params?: GetTaskTypesAndStagesTasksTypesGet$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.getTaskTypesAndStagesTasksTypesGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -72,7 +78,10 @@ export class TaskTypesService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createTaskTypeTasksTypesPost$Response(params: CreateTaskTypeTasksTypesPost$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  createTaskTypeTasksTypesPost$Response(
+    params: CreateTaskTypeTasksTypesPost$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return createTaskTypeTasksTypesPost(this.http, this.rootUrl, params, context);
   }
 
@@ -86,9 +95,12 @@ export class TaskTypesService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createTaskTypeTasksTypesPost(params: CreateTaskTypeTasksTypesPost$Params, context?: HttpContext): Observable<any> {
+  createTaskTypeTasksTypesPost(
+    params: CreateTaskTypeTasksTypesPost$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.createTaskTypeTasksTypesPost$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -105,7 +117,10 @@ export class TaskTypesService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateTaskTypeTasksTypesPatch$Response(params: UpdateTaskTypeTasksTypesPatch$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  updateTaskTypeTasksTypesPatch$Response(
+    params: UpdateTaskTypeTasksTypesPatch$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return updateTaskTypeTasksTypesPatch(this.http, this.rootUrl, params, context);
   }
 
@@ -119,9 +134,12 @@ export class TaskTypesService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateTaskTypeTasksTypesPatch(params: UpdateTaskTypeTasksTypesPatch$Params, context?: HttpContext): Observable<any> {
+  updateTaskTypeTasksTypesPatch(
+    params: UpdateTaskTypeTasksTypesPatch$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.updateTaskTypeTasksTypesPatch$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -138,7 +156,10 @@ export class TaskTypesService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  deleteTaskTypeTasksTypesIdDelete$Response(params: DeleteTaskTypeTasksTypesIdDelete$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  deleteTaskTypeTasksTypesIdDelete$Response(
+    params: DeleteTaskTypeTasksTypesIdDelete$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return deleteTaskTypeTasksTypesIdDelete(this.http, this.rootUrl, params, context);
   }
 
@@ -152,10 +173,12 @@ export class TaskTypesService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  deleteTaskTypeTasksTypesIdDelete(params: DeleteTaskTypeTasksTypesIdDelete$Params, context?: HttpContext): Observable<any> {
+  deleteTaskTypeTasksTypesIdDelete(
+    params: DeleteTaskTypeTasksTypesIdDelete$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.deleteTaskTypeTasksTypesIdDelete$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
-
 }

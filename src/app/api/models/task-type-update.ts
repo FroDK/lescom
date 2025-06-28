@@ -4,7 +4,7 @@
 
 export interface TaskTypeUpdate {
   id: number;
-  parent_id?: (number | null);
-  responsible_role_id?: (number | null);
-  value?: (string | null);
+  parent_id?: number | null;
+  responsible_role_id?: number | null;
+  value?: string | null;
 }

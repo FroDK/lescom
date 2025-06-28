@@ -37,7 +37,10 @@ export class TaskStagesService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createTaskStageTasksStagesPost$Response(params: CreateTaskStageTasksStagesPost$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  createTaskStageTasksStagesPost$Response(
+    params: CreateTaskStageTasksStagesPost$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return createTaskStageTasksStagesPost(this.http, this.rootUrl, params, context);
   }
 
@@ -51,9 +54,12 @@ export class TaskStagesService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createTaskStageTasksStagesPost(params: CreateTaskStageTasksStagesPost$Params, context?: HttpContext): Observable<any> {
+  createTaskStageTasksStagesPost(
+    params: CreateTaskStageTasksStagesPost$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.createTaskStageTasksStagesPost$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -70,7 +76,10 @@ export class TaskStagesService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateTaskStageTasksStagesPatch$Response(params: UpdateTaskStageTasksStagesPatch$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  updateTaskStageTasksStagesPatch$Response(
+    params: UpdateTaskStageTasksStagesPatch$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return updateTaskStageTasksStagesPatch(this.http, this.rootUrl, params, context);
   }
 
@@ -84,9 +93,12 @@ export class TaskStagesService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  updateTaskStageTasksStagesPatch(params: UpdateTaskStageTasksStagesPatch$Params, context?: HttpContext): Observable<any> {
+  updateTaskStageTasksStagesPatch(
+    params: UpdateTaskStageTasksStagesPatch$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.updateTaskStageTasksStagesPatch$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -103,7 +115,10 @@ export class TaskStagesService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  deleteTaskStageTasksStagesIdDelete$Response(params: DeleteTaskStageTasksStagesIdDelete$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  deleteTaskStageTasksStagesIdDelete$Response(
+    params: DeleteTaskStageTasksStagesIdDelete$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return deleteTaskStageTasksStagesIdDelete(this.http, this.rootUrl, params, context);
   }
 
@@ -117,10 +132,12 @@ export class TaskStagesService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  deleteTaskStageTasksStagesIdDelete(params: DeleteTaskStageTasksStagesIdDelete$Params, context?: HttpContext): Observable<any> {
+  deleteTaskStageTasksStagesIdDelete(
+    params: DeleteTaskStageTasksStagesIdDelete$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.deleteTaskStageTasksStagesIdDelete$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
-
 }

@@ -4,7 +4,7 @@
 
 export interface TaskStageUpdate {
   id: number;
-  parent_id?: (number | null);
-  task_type_id?: (number | null);
-  value?: (string | null);
+  parent_id?: number | null;
+  task_type_id?: number | null;
+  value?: string | null;
 }

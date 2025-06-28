@@ -4,19 +4,18 @@
 
 import { RoleSchema } from '../models/role-schema';
 export interface UserUpdateSchema {
-  first_name?: (string | null);
-  image?: (Blob | null);
-  last_name?: (string | null);
-  login?: (string | null);
-  meta_data?: ({
-} | null);
-  password?: (string | null);
-  patronymic?: (string | null);
-  phone?: (string | null);
+  first_name?: string | null;
+  image?: Blob | null;
+  last_name?: string | null;
+  login?: string | null;
+  meta_data?: {} | null;
+  password?: string | null;
+  patronymic?: string | null;
+  phone?: string | null;
 
   /**
    * Список ролей с вложенными подролями
    */
-  roles?: (Array<RoleSchema> | null);
-  structure_id?: (number | null);
+  roles?: Array<RoleSchema> | null;
+  structure_id?: number | null;
 }

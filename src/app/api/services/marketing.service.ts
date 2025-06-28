@@ -35,7 +35,10 @@ export class MarketingService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getUtmListMarketingUtmGet$Response(params: GetUtmListMarketingUtmGet$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  getUtmListMarketingUtmGet$Response(
+    params: GetUtmListMarketingUtmGet$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return getUtmListMarketingUtmGet(this.http, this.rootUrl, params, context);
   }
 
@@ -49,9 +52,12 @@ export class MarketingService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getUtmListMarketingUtmGet(params: GetUtmListMarketingUtmGet$Params, context?: HttpContext): Observable<any> {
+  getUtmListMarketingUtmGet(
+    params: GetUtmListMarketingUtmGet$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.getUtmListMarketingUtmGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -68,7 +74,10 @@ export class MarketingService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getManagerListMarketingManagersGet$Response(params: GetManagerListMarketingManagersGet$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  getManagerListMarketingManagersGet$Response(
+    params: GetManagerListMarketingManagersGet$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return getManagerListMarketingManagersGet(this.http, this.rootUrl, params, context);
   }
 
@@ -82,10 +91,12 @@ export class MarketingService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getManagerListMarketingManagersGet(params: GetManagerListMarketingManagersGet$Params, context?: HttpContext): Observable<any> {
+  getManagerListMarketingManagersGet(
+    params: GetManagerListMarketingManagersGet$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.getManagerListMarketingManagersGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
-
 }

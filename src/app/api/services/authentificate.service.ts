@@ -42,7 +42,10 @@ export class AuthentificateService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  authorizeUserAuthSignInPost$Response(params: AuthorizeUserAuthSignInPost$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  authorizeUserAuthSignInPost$Response(
+    params: AuthorizeUserAuthSignInPost$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return authorizeUserAuthSignInPost(this.http, this.rootUrl, params, context);
   }
 
@@ -57,9 +60,12 @@ export class AuthentificateService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  authorizeUserAuthSignInPost(params: AuthorizeUserAuthSignInPost$Params, context?: HttpContext): Observable<any> {
+  authorizeUserAuthSignInPost(
+    params: AuthorizeUserAuthSignInPost$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.authorizeUserAuthSignInPost$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -77,7 +83,10 @@ export class AuthentificateService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  authorizeByTgAuthTelegramSignInPost$Response(params: AuthorizeByTgAuthTelegramSignInPost$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  authorizeByTgAuthTelegramSignInPost$Response(
+    params: AuthorizeByTgAuthTelegramSignInPost$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return authorizeByTgAuthTelegramSignInPost(this.http, this.rootUrl, params, context);
   }
 
@@ -92,9 +101,12 @@ export class AuthentificateService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  authorizeByTgAuthTelegramSignInPost(params: AuthorizeByTgAuthTelegramSignInPost$Params, context?: HttpContext): Observable<any> {
+  authorizeByTgAuthTelegramSignInPost(
+    params: AuthorizeByTgAuthTelegramSignInPost$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.authorizeByTgAuthTelegramSignInPost$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -112,7 +124,10 @@ export class AuthentificateService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  registerUserAuthSignUpPost$Response(params: RegisterUserAuthSignUpPost$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  registerUserAuthSignUpPost$Response(
+    params: RegisterUserAuthSignUpPost$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return registerUserAuthSignUpPost(this.http, this.rootUrl, params, context);
   }
 
@@ -127,9 +142,12 @@ export class AuthentificateService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  registerUserAuthSignUpPost(params: RegisterUserAuthSignUpPost$Params, context?: HttpContext): Observable<any> {
+  registerUserAuthSignUpPost(
+    params: RegisterUserAuthSignUpPost$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.registerUserAuthSignUpPost$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -146,7 +164,10 @@ export class AuthentificateService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  registerBotAuthTelegramSignUpPost$Response(params: RegisterBotAuthTelegramSignUpPost$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  registerBotAuthTelegramSignUpPost$Response(
+    params: RegisterBotAuthTelegramSignUpPost$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return registerBotAuthTelegramSignUpPost(this.http, this.rootUrl, params, context);
   }
 
@@ -160,9 +181,12 @@ export class AuthentificateService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  registerBotAuthTelegramSignUpPost(params: RegisterBotAuthTelegramSignUpPost$Params, context?: HttpContext): Observable<any> {
+  registerBotAuthTelegramSignUpPost(
+    params: RegisterBotAuthTelegramSignUpPost$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.registerBotAuthTelegramSignUpPost$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -179,7 +203,10 @@ export class AuthentificateService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  checkUserAuthCheckGet$Response(params?: CheckUserAuthCheckGet$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  checkUserAuthCheckGet$Response(
+    params?: CheckUserAuthCheckGet$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return checkUserAuthCheckGet(this.http, this.rootUrl, params, context);
   }
 
@@ -193,10 +220,12 @@ export class AuthentificateService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  checkUserAuthCheckGet(params?: CheckUserAuthCheckGet$Params, context?: HttpContext): Observable<any> {
+  checkUserAuthCheckGet(
+    params?: CheckUserAuthCheckGet$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.checkUserAuthCheckGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
-
 }

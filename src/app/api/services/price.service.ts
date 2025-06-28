@@ -35,7 +35,10 @@ export class PriceService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createBuyerItemPricePost$Response(params: CreateBuyerItemPricePost$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  createBuyerItemPricePost$Response(
+    params: CreateBuyerItemPricePost$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return createBuyerItemPricePost(this.http, this.rootUrl, params, context);
   }
 
@@ -49,9 +52,12 @@ export class PriceService extends BaseService {
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  createBuyerItemPricePost(params: CreateBuyerItemPricePost$Params, context?: HttpContext): Observable<any> {
+  createBuyerItemPricePost(
+    params: CreateBuyerItemPricePost$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.createBuyerItemPricePost$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
 
@@ -68,7 +74,10 @@ export class PriceService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getBuyerItemsPriceTypeIdGet$Response(params: GetBuyerItemsPriceTypeIdGet$Params, context?: HttpContext): Observable<StrictHttpResponse<any>> {
+  getBuyerItemsPriceTypeIdGet$Response(
+    params: GetBuyerItemsPriceTypeIdGet$Params,
+    context?: HttpContext,
+  ): Observable<StrictHttpResponse<any>> {
     return getBuyerItemsPriceTypeIdGet(this.http, this.rootUrl, params, context);
   }
 
@@ -82,10 +91,12 @@ export class PriceService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  getBuyerItemsPriceTypeIdGet(params: GetBuyerItemsPriceTypeIdGet$Params, context?: HttpContext): Observable<any> {
+  getBuyerItemsPriceTypeIdGet(
+    params: GetBuyerItemsPriceTypeIdGet$Params,
+    context?: HttpContext,
+  ): Observable<any> {
     return this.getBuyerItemsPriceTypeIdGet$Response(params, context).pipe(
-      map((r: StrictHttpResponse<any>): any => r.body)
+      map((r: StrictHttpResponse<any>): any => r.body),
     );
   }
-
 }
