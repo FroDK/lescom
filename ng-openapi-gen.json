@@ -1,5 +1,12 @@
 {
   "$schema": "node_modules/ng-openapi-gen/ng-openapi-gen-schema.json",
   "input": "http://109.73.194.223:8010/openapi.json",
-  "output": "./src/app/api"
+  "output": "./src/app/api",
+  "services": true,
+  "apiService": "",
+  "removeStaleFiles": true,
+  "ignoreUnusedModels": true,
+  "defaultTag": "Api",
+  "excludeTags": ["Internal"],
+  "silent": false
 }
