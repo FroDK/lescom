@@ -83,6 +83,112 @@ Husky is configured to run these checks automatically:
 
 The hooks will prevent commits if linting fails or commit messages don't follow the convention.
 
+## Automated Versioning & Releases
+
+This project uses **Semantic Release** with GitHub Actions to automatically version and release the application based on conventional commits.
+
+### How It Works
+
+1. **Push to main branch** triggers GitHub Actions workflow
+2. **Semantic Release analyzes** commits since last release using conventional commit format
+3. **Version is determined** automatically:
+   - `feat:` commits → **minor** version bump (0.1.0 → 0.2.0)
+   - `fix:` commits → **patch** version bump (0.1.0 → 0.1.1)
+   - `BREAKING CHANGE:` in commit body → **major** version bump (0.1.0 → 1.0.0)
+4. **package.json is updated** with new version
+5. **CHANGELOG.md is generated** automatically from commit messages
+6. **Git tag is created** with version number
+7. **GitHub Release is published** with release notes
+8. **Build artifacts are attached** to the release
+
+### Release Workflow
+
+```mermaid
+graph LR
+    A[Push to main] --> B[GitHub Action]
+    B --> C[Analyze Commits]
+    C --> D[Determine Version]
+    D --> E[Update package.json]
+    E --> F[Generate Changelog]
+    F --> G[Create Git Tag]
+    G --> H[GitHub Release]
+    H --> I[Attach Build Assets]
+```
+
+### Commit Types That Trigger Releases
+
+| Commit Type | Version Bump | Example |
+|-------------|--------------|---------|
+| `feat:` | Minor (0.1.0 → 0.2.0) | `feat: add user authentication` |
+| `fix:` | Patch (0.1.0 → 0.1.1) | `fix: resolve memory leak in data service` |
+| `perf:` | Patch (0.1.0 → 0.1.1) | `perf: optimize bundle size` |
+| `BREAKING CHANGE:` | Major (0.1.0 → 1.0.0) | Any commit with `BREAKING CHANGE:` in body |
+
+### Commit Types That Don't Trigger Releases
+
+- `docs:` - Documentation changes (except README)
+- `style:` - Code formatting changes
+- `refactor:` - Code refactoring without functionality change
+- `test:` - Adding or updating tests
+- `build:` - Build system changes
+- `ci:` - CI/CD configuration changes
+- `chore:` - Maintenance tasks
+
+### Manual Release Control
+
+- **Skip release**: Add `[skip ci]` to commit message
+- **Force release**: Create empty commit with appropriate type:
+  ```bash
+  git commit --allow-empty -m "fix: trigger patch release"
+  ```
+
+### Changelog Format
+
+The generated CHANGELOG.md includes:
+- **🚀 Features** - New features (`feat:`)
+- **🐛 Bug Fixes** - Bug fixes (`fix:`)
+- **⚡ Performance Improvements** - Performance improvements (`perf:`)
+- **📚 Documentation** - Documentation changes (`docs:`)
+- **🔄 Reverts** - Reverted changes (`revert:`)
+
+### GitHub Release Assets
+
+Each release automatically includes:
+- **Source code** (zip and tar.gz)
+- **Distribution files** from `dist/` folder
+- **Changelog** for the specific version
+- **Commit references** and PR links
+
+### Configuration Files
+
+- **`.github/workflows/release.yml`** - GitHub Actions workflow
+- **`.releaserc.json`** - Semantic Release configuration
+- **`CHANGELOG.md`** - Auto-generated changelog (do not edit manually)
+
+### Best Practices
+
+1. **Write descriptive commit messages** - They become your release notes
+2. **Use conventional commit format** - Required for automatic versioning
+3. **Include breaking changes** - Add `BREAKING CHANGE:` to commit body when needed
+4. **Review generated releases** - Check GitHub releases for accuracy
+5. **Don't edit CHANGELOG.md manually** - It's auto-generated
+
+### Example Release Process
+
+```bash
+# Developer workflow - no changes needed!
+git add feature.ts
+git commit -m "feat: add dark mode toggle"
+git push origin main
+
+# Automatic result:
+# ✅ Version bumped to 0.2.0
+# ✅ CHANGELOG.md updated
+# ✅ Git tag v0.2.0 created  
+# ✅ GitHub release published
+# ✅ Build artifacts attached
+```
+
 ## API Client
 
 The project includes a generated Angular API client in `src/app/api/` created using ng-openapi-gen from OpenAPI specification.
