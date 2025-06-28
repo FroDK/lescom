@@ -38,6 +38,7 @@ export default [
       '.angular/cache/**',
       '.env',
       '.env.*',
+      'src/server.ts',
     ],
   },
   ...compat.extends('airbnb-base'),
@@ -119,6 +120,13 @@ export default [
             '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
         },
       ],
+      '@typescript-eslint/unbound-method': [
+        'error',
+        {
+          ignoreStatic: true,
+        },
+      ],
+      'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 1 }],
     },
     settings: {
       'import/resolver': {

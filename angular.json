@@ -10,8 +10,34 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "inlineTemplate": true,
-          "inlineStyle": true
+          "inlineTemplate": false,
+          "inlineStyle": false,
+          "flat": true,
+          "classSuffix": "Component"
+        },
+        "@schematics/angular:service": {
+          "flat": true,
+          "classSuffix": "Service"
+        },
+        "@schematics/angular:pipe": {
+          "flat": true,
+          "classSuffix": "Pipe"
+        },
+        "@schematics/angular:directive": {
+          "flat": true,
+          "classSuffix": "Directive"
+        },
+        "@schematics/angular:guard": {
+          "flat": true,
+          "classSuffix": "Guard"
+        },
+        "@schematics/angular:interceptor": {
+          "flat": true,
+          "classSuffix": "Interceptor"
+        },
+        "@schematics/angular:resolver": {
+          "flat": true,
+          "classSuffix": "Resolver"
         }
       },
       "root": "",
@@ -22,6 +48,9 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -92,6 +121,10 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               {
