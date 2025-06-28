@@ -38,10 +38,9 @@
     <!-- Status Icons -->
     @if (!loading) {
       @if (variant === 'error') {
-        <lucide-icon [img]="alertIcon" [class]="rightIconClasses + ' text-destructive'">
-        </lucide-icon>
+        <lucide-icon [img]="alertIcon" [class]="errorIconClasses"> </lucide-icon>
       } @else if (variant === 'success') {
-        <lucide-icon [img]="checkIcon" [class]="rightIconClasses + ' text-chart-1'"> </lucide-icon>
+        <lucide-icon [img]="checkIcon" [class]="successIconClasses"> </lucide-icon>
       }
     }
 
@@ -69,8 +68,7 @@
 
     <!-- Custom Right Icon -->
     @if (rightIcon && !loading && !clearable && !showPasswordToggle && variant === 'default') {
-      <lucide-icon [img]="searchIcon" [class]="rightIconClasses + ' text-muted-foreground'">
-      </lucide-icon>
+      <lucide-icon [img]="searchIcon" [class]="customRightIconClasses"> </lucide-icon>
     }
   </div>
 </div>

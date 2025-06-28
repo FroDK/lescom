@@ -1,4 +1,5 @@
 import { Directive, effect, ElementRef, HostListener, inject, input, output } from '@angular/core';
+import { cn } from '@utils';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'destructive';
 export type ButtonSize = 'sm' | 'default' | 'lg';
@@ -41,8 +42,6 @@ export class ButtonDirective {
   }
 
   computedClasses(): string {
-    const baseClasses = this.getVariantClasses();
-    const sizeClasses = this.getSizeClasses();
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const element: HTMLButtonElement = this.elementRef.nativeElement;
     const existingClasses: string = element.getAttribute('class') || '';
@@ -51,7 +50,7 @@ export class ButtonDirective {
       .filter((c: string) => !c.startsWith('btn-') && c !== 'btn' && c !== '')
       .join(' ');
 
-    return `${baseClasses} ${sizeClasses} ${customClasses}`.trim();
+    return cn(this.getVariantClasses(), this.getSizeClasses(), customClasses);
   }
 
   private getVariantClasses(): string {

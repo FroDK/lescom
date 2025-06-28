@@ -1,4 +1,5 @@
 import { Directive, effect, ElementRef, inject, input } from '@angular/core';
+import { cn } from '@utils';
 
 export type StackDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
 export type StackGap =
@@ -47,13 +48,6 @@ export class StackDirective {
   }
 
   computedClasses(): string {
-    const baseClasses = 'flex';
-    const directionClass = this.getDirectionClass();
-    const gapClass = this.getGapClass();
-    const alignClass = this.getAlignClass();
-    const justifyClass = this.getJustifyClass();
-    const wrapClass = this.wrap() ? 'flex-wrap' : '';
-
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const element: HTMLElement = this.elementRef.nativeElement;
     const existingClasses: string = element.getAttribute('class') || '';
@@ -69,7 +63,15 @@ export class StackDirective {
       )
       .join(' ');
 
-    return `${baseClasses} ${directionClass} ${gapClass} ${alignClass} ${justifyClass} ${wrapClass} ${customClasses}`.trim();
+    return cn(
+      'flex',
+      this.getDirectionClass(),
+      this.getGapClass(),
+      this.getAlignClass(),
+      this.getJustifyClass(),
+      this.wrap() && 'flex-wrap',
+      customClasses,
+    );
   }
 
   private getDirectionClass(): string {

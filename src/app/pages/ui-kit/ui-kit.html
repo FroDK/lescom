@@ -135,6 +135,70 @@
       </div>
     </div>
 
+    <!-- Badge Components -->
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Badge Components</h2>
+        <p class="text-sm text-muted-foreground">Status indicators with variants and sizes</p>
+      </div>
+      <div class="card-content space-y-4">
+        <!-- Variants -->
+        <div>
+          <h3 class="text-sm font-medium mb-3">Variants</h3>
+          <div appStack direction="row" gap="3" [wrap]="true">
+            <app-badge variant="default">Default</app-badge>
+            <app-badge variant="success">Success</app-badge>
+            <app-badge variant="info">Info</app-badge>
+            <app-badge variant="warning">Warning</app-badge>
+            <app-badge variant="destructive">Error</app-badge>
+          </div>
+        </div>
+
+        <!-- Sizes -->
+        <div>
+          <h3 class="text-sm font-medium mb-3">Sizes</h3>
+          <div appStack direction="row" gap="3" align="center">
+            <app-badge variant="success" size="sm">Small</app-badge>
+            <app-badge variant="success" size="default">Default</app-badge>
+            <app-badge variant="success" size="lg">Large</app-badge>
+          </div>
+        </div>
+
+        <!-- Usage Examples -->
+        <div>
+          <h3 class="text-sm font-medium mb-3">Usage Examples</h3>
+          <div appStack direction="column" gap="3">
+            <div class="flex items-center gap-2">
+              <span class="text-sm">Status:</span>
+              <app-badge variant="success">Active</app-badge>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm">Priority:</span>
+              <app-badge variant="warning">High</app-badge>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm">Count:</span>
+              <app-badge variant="info">42</app-badge>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm">Error:</span>
+              <app-badge variant="destructive">Failed</app-badge>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Classes -->
+        <div>
+          <h3 class="text-sm font-medium mb-3">Custom Styling</h3>
+          <div appStack direction="row" gap="3" [wrap]="true">
+            <app-badge variant="success" class="font-bold">Bold Badge</app-badge>
+            <app-badge variant="info" class="uppercase">UPPER</app-badge>
+            <app-badge variant="warning" class="tracking-wide">Spaced</app-badge>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Form Field Components -->
     <div class="card lg:col-span-2">
       <div class="card-header">
@@ -222,30 +286,27 @@
             <div class="grid grid-cols-2 gap-3 text-xs">
               <div class="flex items-center gap-2">
                 <span class="font-medium">Valid:</span>
-                <span
-                  class="badge"
-                  [class]="demoForm.valid ? 'badge-success' : 'badge-destructive'"
-                >
+                <app-badge [variant]="demoForm.valid ? 'success' : 'destructive'">
                   {{ demoForm.valid ? 'Yes' : 'No' }}
-                </span>
+                </app-badge>
               </div>
               <div class="flex items-center gap-2">
                 <span class="font-medium">Touched:</span>
-                <span class="badge" [class]="demoForm.touched ? 'badge-info' : 'badge-success'">
+                <app-badge [variant]="demoForm.touched ? 'info' : 'success'">
                   {{ demoForm.touched ? 'Yes' : 'No' }}
-                </span>
+                </app-badge>
               </div>
               <div class="flex items-center gap-2">
                 <span class="font-medium">Dirty:</span>
-                <span class="badge" [class]="demoForm.dirty ? 'badge-warning' : 'badge-success'">
+                <app-badge [variant]="demoForm.dirty ? 'warning' : 'success'">
                   {{ demoForm.dirty ? 'Yes' : 'No' }}
-                </span>
+                </app-badge>
               </div>
               <div class="flex items-center gap-2">
                 <span class="font-medium">Errors:</span>
-                <span class="badge badge-destructive">
+                <app-badge variant="destructive">
                   {{ objectKeys.keys(getFormErrors()).length }}
-                </span>
+                </app-badge>
               </div>
             </div>
 
@@ -291,10 +352,10 @@
         <div>
           <h3 class="text-sm font-medium mb-3">Stack - Flexible Grid</h3>
           <div appStack direction="row" gap="3" [wrap]="true" justify="between">
-            <span class="badge badge-success">Tag 1</span>
-            <span class="badge badge-info">Tag 2</span>
-            <span class="badge badge-warning">Tag 3</span>
-            <span class="badge badge-destructive">Tag 4</span>
+            <app-badge variant="success">Tag 1</app-badge>
+            <app-badge variant="info">Tag 2</app-badge>
+            <app-badge variant="warning">Tag 3</app-badge>
+            <app-badge variant="destructive">Tag 4</app-badge>
           </div>
         </div>
       </div>
@@ -351,24 +412,21 @@
               </div>
               <div class="text-sm">
                 <span class="font-medium">Loading State:</span>
-                <span class="ml-2 badge" [class]="isLoading() ? 'badge-info' : 'badge-success'">
+                <app-badge class="ml-2" [variant]="isLoading() ? 'info' : 'success'">
                   {{ isLoading() ? 'Active' : 'Inactive' }}
-                </span>
+                </app-badge>
               </div>
               <div class="text-sm">
                 <span class="font-medium">Error State:</span>
-                <span
-                  class="ml-2 badge"
-                  [class]="hasError() ? 'badge-destructive' : 'badge-success'"
-                >
+                <app-badge class="ml-2" [variant]="hasError() ? 'destructive' : 'success'">
                   {{ hasError() ? 'Active' : 'Inactive' }}
-                </span>
+                </app-badge>
               </div>
               <div class="text-sm">
                 <span class="font-medium">Success State:</span>
-                <span class="ml-2 badge" [class]="hasSuccess() ? 'badge-success' : 'badge-info'">
+                <app-badge class="ml-2" [variant]="hasSuccess() ? 'success' : 'info'">
                   {{ hasSuccess() ? 'Active' : 'Inactive' }}
-                </span>
+                </app-badge>
               </div>
             </div>
           </div>
@@ -411,10 +469,10 @@
           <div class="flex-1 min-w-[250px]">
             <h3 class="text-sm font-medium mb-4">Badge Components</h3>
             <div appStack direction="row" gap="2" [wrap]="true">
-              <span class="badge badge-success">Success</span>
-              <span class="badge badge-info">Info</span>
-              <span class="badge badge-warning">Warning</span>
-              <span class="badge badge-destructive">Error</span>
+              <app-badge variant="success">Success</app-badge>
+              <app-badge variant="info">Info</app-badge>
+              <app-badge variant="warning">Warning</app-badge>
+              <app-badge variant="destructive">Error</app-badge>
             </div>
           </div>
         </div>

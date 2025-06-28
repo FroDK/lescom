@@ -318,6 +318,10 @@ body {
     @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
   }
 
+  .badge-default {
+    @apply bg-muted text-muted-foreground;
+  }
+
   .badge-success {
     @apply bg-chart-5/20 text-chart-5;
   }
@@ -332,6 +336,15 @@ body {
 
   .badge-destructive {
     @apply bg-destructive text-destructive-foreground;
+  }
+
+  /* Badge sizes */
+  .badge-sm {
+    @apply px-2 py-0.5 text-xs;
+  }
+
+  .badge-lg {
+    @apply px-3 py-1 text-sm;
   }
 
   /* Navigation styles */

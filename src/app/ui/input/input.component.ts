@@ -20,6 +20,8 @@ import {
   X,
 } from 'lucide-angular';
 
+import { cn } from '@utils';
+
 export interface InputProps {
   type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search';
   size?: 'sm' | 'default' | 'lg';
@@ -135,18 +137,15 @@ export class InputComponent implements ControlValueAccessor {
   }
 
   get containerClasses(): string {
-    const baseClasses = 'relative flex items-center';
     const sizeClasses = {
       sm: 'text-sm',
       default: 'text-base',
       lg: 'text-lg',
     };
-    return `${baseClasses} ${sizeClasses[this.size || 'default']} ${this.class}`;
+    return cn('relative flex items-center', sizeClasses[this.size || 'default'], this.class);
   }
 
   get inputClasses(): string {
-    const baseClasses = 'input w-full transition-all duration-200';
-
     const sizeClasses = {
       sm: 'h-8 px-3 text-sm',
       default: 'h-10 px-3',
@@ -159,9 +158,12 @@ export class InputComponent implements ControlValueAccessor {
       success: 'input-success',
     };
 
-    const paddingClasses = this.getPaddingClasses();
-
-    return `${baseClasses} ${sizeClasses[this.size || 'default']} ${variantClasses[this.variant || 'default']} ${paddingClasses}`;
+    return cn(
+      'input w-full transition-all duration-200',
+      sizeClasses[this.size || 'default'],
+      variantClasses[this.variant || 'default'],
+      this.getPaddingClasses(),
+    );
   }
 
   private getPaddingClasses(): string {
@@ -194,32 +196,47 @@ export class InputComponent implements ControlValueAccessor {
       }
     }
 
-    return `${leftPadding} ${rightPadding}`;
+    return cn(leftPadding, rightPadding);
   }
 
   get leftIconClasses(): string {
-    const baseClasses =
-      'absolute left-0 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none';
     const sizeClasses = {
       sm: 'left-2 w-4 h-4',
       default: 'left-3 w-4 h-4',
       lg: 'left-4 w-5 h-5',
     };
-    return `${baseClasses} ${sizeClasses[this.size || 'default']}`;
+    return cn(
+      'absolute left-0 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none',
+      sizeClasses[this.size || 'default'],
+    );
   }
 
   get rightIconClasses(): string {
-    const baseClasses = 'absolute right-0 top-1/2 -translate-y-1/2';
     const sizeClasses = {
       sm: 'right-2 w-4 h-4',
       default: 'right-3 w-4 h-4',
       lg: 'right-4 w-5 h-5',
     };
-    return `${baseClasses} ${sizeClasses[this.size || 'default']}`;
+    return cn('absolute right-0 top-1/2 -translate-y-1/2', sizeClasses[this.size || 'default']);
   }
 
   get buttonClasses(): string {
-    return `${this.rightIconClasses} text-muted-foreground hover:text-foreground cursor-pointer transition-colors duration-200`;
+    return cn(
+      this.rightIconClasses,
+      'text-muted-foreground hover:text-foreground cursor-pointer transition-colors duration-200',
+    );
+  }
+
+  get errorIconClasses(): string {
+    return cn(this.rightIconClasses, 'text-destructive');
+  }
+
+  get successIconClasses(): string {
+    return cn(this.rightIconClasses, 'text-chart-1');
+  }
+
+  get customRightIconClasses(): string {
+    return cn(this.rightIconClasses, 'text-muted-foreground');
   }
 
   onInput(event: Event): void {

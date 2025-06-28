@@ -8,13 +8,20 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { ButtonDirective, FormFieldComponent, InputComponent, StackDirective } from '@ui';
+import {
+  BadgeComponent,
+  ButtonDirective,
+  FormFieldComponent,
+  InputComponent,
+  StackDirective,
+} from '@ui';
 
 @Component({
   selector: 'app-ui-kit',
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    BadgeComponent,
     ButtonDirective,
     StackDirective,
     InputComponent,

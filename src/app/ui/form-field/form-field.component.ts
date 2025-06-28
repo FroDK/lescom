@@ -6,6 +6,7 @@ import {
   FormControl,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+import { cn } from '@utils';
 import { InputComponent } from '../input/input.component';
 
 export interface FormFieldProps {
@@ -86,8 +87,7 @@ export class FormFieldComponent implements ControlValueAccessor {
   }
 
   get containerClasses(): string {
-    const baseClasses = 'space-y-2';
-    return `${baseClasses} ${this.class() || ''}`;
+    return cn('space-y-2', this.class());
   }
 
   get labelClasses(): string {

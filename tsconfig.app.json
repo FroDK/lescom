@@ -10,7 +10,9 @@
     "baseUrl": "src",
     "paths": {
       "@ui": ["app/ui"],
-      "@ui/*": ["app/ui/*"]
+      "@ui/*": ["app/ui/*"],
+      "@utils": ["app/utils"],
+      "@utils/*": ["app/utils/*"]
     }
   },
   "include": [

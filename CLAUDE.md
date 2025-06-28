@@ -273,6 +273,208 @@ import { TasksService } from '../api/services/tasks.service';
 constructor(private tasksService = inject(TasksService)) {}
 ```
 
+## Utility Libraries
+
+### Lodash ES (`lodash-es`)
+The project uses **lodash-es** for utility functions with ES module support and tree-shaking optimization.
+
+**Installation:**
+```bash
+pnpm add lodash-es
+pnpm add -D @types/lodash-es
+```
+
+**Import Best Practices:**
+```typescript
+// ✅ Tree-shakable imports (recommended)
+import { debounce, throttle, cloneDeep } from 'lodash-es';
+
+// ✅ Specific function imports
+import debounce from 'lodash-es/debounce';
+import isEqual from 'lodash-es/isEqual';
+
+// ❌ Avoid full library imports (larger bundle)
+import _ from 'lodash-es';
+```
+
+**Common Use Cases:**
+
+#### Array Utilities
+```typescript
+import { uniq, groupBy, sortBy, chunk } from 'lodash-es';
+
+// Remove duplicates
+const uniqueIds = uniq([1, 2, 2, 3, 4, 4]);
+
+// Group objects by property
+const tasksByStatus = groupBy(tasks, 'status');
+
+// Sort by property
+const sortedTasks = sortBy(tasks, 'createdAt');
+
+// Split array into chunks
+const pages = chunk(items, 10);
+```
+
+#### Object Utilities
+```typescript
+import { cloneDeep, merge, pick, omit } from 'lodash-es';
+
+// Deep clone objects
+const taskCopy = cloneDeep(originalTask);
+
+// Merge objects
+const updatedTask = merge({}, task, updates);
+
+// Pick specific properties
+const taskSummary = pick(task, ['id', 'title', 'status']);
+
+// Omit properties
+const taskWithoutMeta = omit(task, ['metadata', 'internal']);
+```
+
+#### Function Utilities
+```typescript
+import { debounce, throttle, memoize } from 'lodash-es';
+
+// Debounce user input
+const debouncedSearch = debounce((query: string) => {
+  this.searchTasks(query);
+}, 300);
+
+// Throttle scroll events
+const throttledScroll = throttle(() => {
+  this.handleScroll();
+}, 100);
+
+// Memoize expensive calculations
+const memoizedCalculation = memoize((data: any[]) => {
+  return data.reduce((sum, item) => sum + item.value, 0);
+});
+```
+
+#### Collection Utilities
+```typescript
+import { find, filter, map, reduce } from 'lodash-es';
+
+// Find by condition
+const activeTask = find(tasks, { status: 'active' });
+
+// Filter with complex conditions
+const urgentTasks = filter(tasks, task => 
+  task.priority === 'high' && task.dueDate < new Date()
+);
+
+// Transform data
+const taskTitles = map(tasks, 'title');
+
+// Aggregate data
+const totalValue = reduce(tasks, (sum, task) => sum + task.value, 0);
+```
+
+#### Type Checking
+```typescript
+import { isArray, isObject, isString, isEmpty } from 'lodash-es';
+
+// Type guards
+if (isArray(data)) {
+  data.forEach(item => processItem(item));
+}
+
+if (isObject(value) && !isArray(value)) {
+  Object.keys(value).forEach(key => processKey(key));
+}
+
+// Empty checks
+if (!isEmpty(searchQuery)) {
+  performSearch(searchQuery);
+}
+```
+
+**Angular-Specific Patterns:**
+
+#### Service with Lodash
+```typescript
+import { Injectable } from '@angular/core';
+import { debounce, uniqBy } from 'lodash-es';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TaskService {
+  private debouncedSave = debounce(this.saveTask.bind(this), 1000);
+
+  processUniqueTasks(tasks: Task[]): Task[] {
+    return uniqBy(tasks, 'id');
+  }
+
+  queueSave(task: Task): void {
+    this.debouncedSave(task);
+  }
+
+  private saveTask(task: Task): void {
+    // Save implementation
+  }
+}
+```
+
+#### Component with Lodash
+```typescript
+import { Component, inject } from '@angular/core';
+import { groupBy, sortBy } from 'lodash-es';
+
+@Component({
+  selector: 'app-task-list',
+  templateUrl: './task-list.component.html'
+})
+export class TaskListComponent {
+  tasks = signal<Task[]>([]);
+  
+  groupedTasks = computed(() => {
+    const tasks = this.tasks();
+    return groupBy(sortBy(tasks, 'priority'), 'status');
+  });
+}
+```
+
+#### Form Utilities
+```typescript
+import { isEqual, cloneDeep } from 'lodash-es';
+
+export class FormComponent {
+  originalData = signal<any>(null);
+  currentData = signal<any>(null);
+  
+  hasChanges = computed(() => {
+    return !isEqual(this.originalData(), this.currentData());
+  });
+  
+  resetForm(): void {
+    this.currentData.set(cloneDeep(this.originalData()));
+  }
+}
+```
+
+**Performance Considerations:**
+- Use specific imports for optimal tree-shaking
+- Prefer native JavaScript methods when performance is critical
+- Use `memoize` for expensive computations
+- Be mindful of `cloneDeep` with large objects
+
+**Common Patterns to Avoid:**
+```typescript
+// ❌ Don't import the entire library
+import _ from 'lodash-es';
+
+// ❌ Don't use when native alternatives exist
+import { forEach } from 'lodash-es';
+// Use: array.forEach() instead
+
+// ❌ Don't overuse utility functions for simple operations
+import { isEmpty } from 'lodash-es';
+// Use: array.length === 0 for arrays
+```
+
 ## Design System & Styling
 
 ### Theme Configuration
@@ -489,6 +691,11 @@ When creating new UI components:
 **Current UI component structure:**
 ```
 src/app/ui/
+├── badge/
+│   ├── badge.component.html   # Badge template
+│   ├── badge.component.ts     # Badge component
+│   ├── badge.component.spec.ts # Badge tests
+│   └── index.ts               # Badge exports
 ├── button/
 │   ├── button.directive.ts    # Button directive
 │   └── index.ts               # Button exports
@@ -524,29 +731,91 @@ src/
 │   ├── app.config.server.ts      # Server app configuration  
 │   ├── app.routes.ts             # Client-side routes
 │   ├── app.routes.server.ts      # Server-side routes
+│   ├── app.spec.ts               # Root component tests
 │   ├── api/                      # Generated API client
 │   │   ├── services/             # Service classes for API endpoints
+│   │   │   ├── authentificate.service.ts
+│   │   │   ├── marketing.service.ts
+│   │   │   ├── price.service.ts
+│   │   │   ├── service.ts
+│   │   │   ├── task-stages.service.ts
+│   │   │   ├── task-types.service.ts
+│   │   │   ├── tasks.service.ts
+│   │   │   └── users.service.ts
 │   │   ├── models/               # TypeScript interfaces for API data
+│   │   │   ├── body-create-comment-as-task-comments-post.ts
+│   │   │   ├── bot-create.ts
+│   │   │   ├── create-buyer-model.ts
+│   │   │   ├── http-validation-error.ts
+│   │   │   ├── role-schema.ts
+│   │   │   ├── task-create.ts
+│   │   │   ├── task-stage-create.ts
+│   │   │   ├── task-stage-update.ts
+│   │   │   ├── task-type-create.ts
+│   │   │   ├── task-type-update.ts
+│   │   │   ├── task-update-schema.ts
+│   │   │   ├── telegram-author.ts
+│   │   │   ├── user-authorize.ts
+│   │   │   ├── user-create.ts
+│   │   │   ├── user-update-schema.ts
+│   │   │   └── validation-error.ts
 │   │   ├── fn/                   # Functional API calls by feature
-│   │   └── *.ts                  # API configuration files
+│   │   │   ├── authentificate/   # Authentication endpoints
+│   │   │   ├── marketing/        # Marketing endpoints
+│   │   │   ├── price/            # Pricing endpoints
+│   │   │   ├── task-stages/      # Task stages endpoints
+│   │   │   ├── task-types/       # Task types endpoints
+│   │   │   ├── tasks/            # Task management endpoints
+│   │   │   ├── users/            # User management endpoints
+│   │   │   └── *.ts              # Comment and webhook functions
+│   │   ├── api-configuration.ts  # API base configuration
+│   │   ├── api.module.ts         # API module
+│   │   ├── base-service.ts       # Base service class
+│   │   ├── models.ts             # Model exports
+│   │   ├── request-builder.ts    # Request builder utility
+│   │   ├── services.ts           # Service exports
+│   │   └── strict-http-response.ts # HTTP response typing
 │   ├── components/               # Shared components
 │   │   └── environment-info.component.ts
 │   ├── demo/                     # Demo components
 │   │   └── form-field-demo.component.ts
 │   ├── pages/                    # Page components
 │   │   └── ui-kit/               # UI kit showcase page
+│   │       ├── ui-kit.html       # UI kit template
+│   │       ├── ui-kit.ts         # UI kit component
+│   │       └── ui-kit.spec.ts    # UI kit tests
 │   ├── services/                 # Application services
 │   │   └── environment.service.ts
-│   └── ui/                       # UI component library
-│       ├── button/               # Button directive
-│       ├── form-field/           # Form field component
-│       ├── input/                # Input component
-│       ├── stack/                # Stack layout directive
-│       └── index.ts              # UI barrel exports
+│   ├── ui/                       # UI component library
+│   │   ├── badge/                # Badge component
+│   │   │   ├── badge.component.html
+│   │   │   ├── badge.component.ts
+│   │   │   ├── badge.component.spec.ts
+│   │   │   └── index.ts
+│   │   ├── button/               # Button directive
+│   │   │   ├── button.directive.ts
+│   │   │   └── index.ts
+│   │   ├── form-field/           # Form field component
+│   │   │   ├── form-field.component.html
+│   │   │   ├── form-field.component.ts
+│   │   │   └── index.ts
+│   │   ├── input/                # Input component
+│   │   │   ├── input.component.html
+│   │   │   ├── input.component.ts
+│   │   │   └── index.ts
+│   │   ├── stack/                # Stack layout directive
+│   │   │   ├── stack.directive.ts
+│   │   │   └── index.ts
+│   │   └── index.ts              # UI barrel exports
+│   └── utils/                    # Utility functions
+│       ├── class-names.util.ts   # CSS class utility
+│       ├── class-names.util.spec.ts # Class utility tests
+│       └── index.ts              # Utils barrel exports
 ├── environments/                 # Environment configuration
-│   ├── environment.ts
-│   ├── environment.development.ts
-│   └── environment.prod.ts
+│   ├── environment.ts            # Base environment
+│   ├── environment.development.ts # Development config
+│   └── environment.prod.ts       # Production config
+├── index.html                    # HTML entry point
 ├── main.ts                       # Client bootstrap
 ├── main.server.ts                # Server bootstrap
 ├── server.ts                     # Express server for SSR
@@ -554,10 +823,73 @@ src/
 └── theme.css                     # Tailwind theme configuration
 ```
 
+### Root Directory Structure
+```
+project-root/
+├── src/                          # Source code
+├── dist/                         # Build output
+├── public/                       # Static assets
+│   └── favicon.ico
+├── scripts/                      # Build and utility scripts
+│   ├── compush.sh               # Commit and push script
+│   └── fix-api-generation.js    # API generation fixes
+├── node_modules/                 # Dependencies
+├── angular.json                  # Angular CLI configuration
+├── eslint.config.mjs            # ESLint configuration
+├── ng-openapi-gen.json          # API generation config
+├── package.json                 # Package configuration
+├── pnpm-lock.yaml               # Lock file for pnpm
+├── tailwind.config.ts           # Tailwind CSS configuration
+├── tsconfig.json                # TypeScript base config
+├── tsconfig.app.json            # App-specific TypeScript config
+├── tsconfig.spec.json           # Test-specific TypeScript config
+├── supabase-theme.css           # Additional theme file
+├── CLAUDE.md                    # Project documentation
+├── README.md                    # Project readme
+├── CHANGELOG.md                 # Auto-generated changelog
+├── LESCOM_WEBSITE_ANALYSIS.md   # Website analysis
+├── TAILWIND_DESIGN_SYSTEM.md    # Design system docs
+└── TAILWIND_V4_SETUP.md         # Tailwind v4 setup guide
+```
+
 ### Configuration Files
 - `angular.json` - Angular CLI configuration, uses pnpm as package manager
 - `tsconfig.json` - TypeScript strict mode enabled with Angular-specific options
 - `server.ts` - Express server setup for SSR
+
+### Path Mappings
+The project uses TypeScript path mappings for cleaner imports:
+
+```typescript
+// tsconfig.app.json & tsconfig.spec.json
+"paths": {
+  "@ui": ["app/ui"],
+  "@ui/*": ["app/ui/*"],
+  "@utils": ["app/utils"],
+  "@utils/*": ["app/utils/*"]
+}
+```
+
+**Usage Examples:**
+```typescript
+// UI components
+import { ButtonDirective } from '@ui/button';
+import { InputComponent } from '@ui/input';
+import { StackDirective } from '@ui/stack';
+
+// Utility functions
+import { cn } from '@utils';
+import { classNames } from '@utils/class-names.util';
+
+// Specific utilities
+import { cn } from '@utils/class-names.util';
+```
+
+**Path Mapping Benefits:**
+- Cleaner, more readable imports
+- Easier refactoring when moving files
+- IDE autocompletion support
+- Consistent import paths across the project
 
 ### Important Angular Patterns
 1. **Component Creation**: Use Angular CLI: `ng generate component name --standalone`
