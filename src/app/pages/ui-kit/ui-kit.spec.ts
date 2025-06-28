@@ -1,22 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { Counter } from './counter';
+import { UiKitComponent } from './ui-kit';
 
-describe('Counter', () => {
-  let component: Counter;
-  let fixture: ComponentFixture<Counter>;
+describe('UiKitComponent', () => {
+  let component: UiKitComponent;
+  let fixture: ComponentFixture<UiKitComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Counter],
+      imports: [UiKitComponent],
+      providers: [FormBuilder],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Counter);
+    fixture = TestBed.createComponent(UiKitComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have form controls', () => {
+    expect(component.demoForm).toBeDefined();
   });
 });

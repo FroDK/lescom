@@ -6,7 +6,7 @@ import {
   FormControl,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
-import { InputComponent } from '@ui';
+import { InputComponent } from '../input/input.component';
 
 export interface FormFieldProps {
   label?: string;

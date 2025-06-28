@@ -6,7 +6,12 @@
     "outDir": "./out-tsc/spec",
     "types": [
       "jasmine"
-    ]
+    ],
+    "baseUrl": "src",
+    "paths": {
+      "@ui": ["app/ui"],
+      "@ui/*": ["app/ui/*"]
+    }
   },
   "include": [
     "src/**/*.ts"

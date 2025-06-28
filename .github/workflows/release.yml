@@ -44,7 +44,7 @@ jobs:
           pnpm run format:check
 
       - name: Run tests
-        run: pnpm test --watch=false --browsers=ChromeHeadless
+        run: pnpm test -- --watch=false --browsers=ChromeHeadless
 
       - name: Build project
         run: pnpm run build
