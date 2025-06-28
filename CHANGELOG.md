@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/FroDK/lescom/compare/v1.0.0...v1.1.0) (2025-06-28)
+
+### 🚀 Features
+
+* add utils path mapping and badge component ([1c61b10](https://github.com/FroDK/lescom/commit/1c61b1011882bf9a054dbc8090d9bed1d5285433))
+
 ## 1.0.0 (2025-06-28)
 
 ### ⚠ BREAKING CHANGES
