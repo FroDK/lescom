@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Run lint check before commit
+pnpm run lint
