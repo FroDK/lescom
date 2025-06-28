@@ -1,0 +1,76 @@
+<div [class]="containerClasses">
+  <!-- Left Icon -->
+  @if (leftIcon || type === 'search') {
+    <lucide-icon [img]="searchIcon" [class]="leftIconClasses"> </lucide-icon>
+  }
+
+  <!-- Input Element -->
+  <input
+    [type]="inputType"
+    [value]="currentValue"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [readonly]="readonly"
+    [required]="required"
+    [autocomplete]="autoComplete"
+    [attr.maxlength]="maxLength"
+    [attr.minlength]="minLength"
+    [attr.pattern]="pattern"
+    [class]="inputClasses"
+    (input)="onInput($event)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+  />
+
+  <!-- Right Side Icons Container -->
+  <div
+    class="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-1"
+    [class.pr-2]="size === 'sm'"
+    [class.pr-3]="size === 'default'"
+    [class.pr-4]="size === 'lg'"
+  >
+    <!-- Loading Spinner -->
+    @if (loading) {
+      <lucide-icon [img]="loaderIcon" class="w-4 h-4 animate-spin text-muted-foreground">
+      </lucide-icon>
+    }
+
+    <!-- Status Icons -->
+    @if (!loading) {
+      @if (variant === 'error') {
+        <lucide-icon [img]="alertIcon" [class]="rightIconClasses + ' text-destructive'">
+        </lucide-icon>
+      } @else if (variant === 'success') {
+        <lucide-icon [img]="checkIcon" [class]="rightIconClasses + ' text-chart-1'"> </lucide-icon>
+      }
+    }
+
+    <!-- Clear Button -->
+    @if (clearable && currentValue && !loading && !disabled && !readonly) {
+      <button type="button" [class]="buttonClasses" (click)="clearInput()" aria-label="Clear input">
+        <lucide-icon [img]="xIcon" class="w-4 h-4"> </lucide-icon>
+      </button>
+    }
+
+    <!-- Password Toggle -->
+    @if (showPasswordToggle && type === 'password' && !loading) {
+      <button
+        type="button"
+        class="absolute right-0 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground cursor-pointer transition-colors duration-200 flex items-center justify-center"
+        [class.right-2]="size === 'sm'"
+        [class.right-3]="size === 'default'"
+        [class.right-4]="size === 'lg'"
+        (click)="togglePasswordVisibility()"
+        [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+      >
+        <lucide-icon [img]="showPassword ? eyeOffIcon : eyeIcon" class="w-4 h-4"> </lucide-icon>
+      </button>
+    }
+
+    <!-- Custom Right Icon -->
+    @if (rightIcon && !loading && !clearable && !showPasswordToggle && variant === 'default') {
+      <lucide-icon [img]="searchIcon" [class]="rightIconClasses + ' text-muted-foreground'">
+      </lucide-icon>
+    }
+  </div>
+</div>
