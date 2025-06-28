@@ -7,16 +7,22 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
+import { BaseService } from '../base-service';
 import { StrictHttpResponse } from '../strict-http-response';
 
-import { createTaskStageTasksStagesPost } from '../fn/task-stages/create-task-stage-tasks-stages-post';
-import { CreateTaskStageTasksStagesPost$Params } from '../fn/task-stages/create-task-stage-tasks-stages-post';
-import { deleteTaskStageTasksStagesIdDelete } from '../fn/task-stages/delete-task-stage-tasks-stages-id-delete';
-import { DeleteTaskStageTasksStagesIdDelete$Params } from '../fn/task-stages/delete-task-stage-tasks-stages-id-delete';
-import { updateTaskStageTasksStagesPatch } from '../fn/task-stages/update-task-stage-tasks-stages-patch';
-import { UpdateTaskStageTasksStagesPatch$Params } from '../fn/task-stages/update-task-stage-tasks-stages-patch';
+import {
+  createTaskStageTasksStagesPost,
+  CreateTaskStageTasksStagesPost$Params,
+} from '../fn/task-stages/create-task-stage-tasks-stages-post';
+import {
+  deleteTaskStageTasksStagesIdDelete,
+  DeleteTaskStageTasksStagesIdDelete$Params,
+} from '../fn/task-stages/delete-task-stage-tasks-stages-id-delete';
+import {
+  updateTaskStageTasksStagesPatch,
+  UpdateTaskStageTasksStagesPatch$Params,
+} from '../fn/task-stages/update-task-stage-tasks-stages-patch';
 
 @Injectable({ providedIn: 'root' })
 export class TaskStagesService extends BaseService {

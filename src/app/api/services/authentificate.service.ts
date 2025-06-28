@@ -7,20 +7,30 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
+import { BaseService } from '../base-service';
 import { StrictHttpResponse } from '../strict-http-response';
 
-import { authorizeByTgAuthTelegramSignInPost } from '../fn/authentificate/authorize-by-tg-auth-telegram-sign-in-post';
-import { AuthorizeByTgAuthTelegramSignInPost$Params } from '../fn/authentificate/authorize-by-tg-auth-telegram-sign-in-post';
-import { authorizeUserAuthSignInPost } from '../fn/authentificate/authorize-user-auth-sign-in-post';
-import { AuthorizeUserAuthSignInPost$Params } from '../fn/authentificate/authorize-user-auth-sign-in-post';
-import { checkUserAuthCheckGet } from '../fn/authentificate/check-user-auth-check-get';
-import { CheckUserAuthCheckGet$Params } from '../fn/authentificate/check-user-auth-check-get';
-import { registerBotAuthTelegramSignUpPost } from '../fn/authentificate/register-bot-auth-telegram-sign-up-post';
-import { RegisterBotAuthTelegramSignUpPost$Params } from '../fn/authentificate/register-bot-auth-telegram-sign-up-post';
-import { registerUserAuthSignUpPost } from '../fn/authentificate/register-user-auth-sign-up-post';
-import { RegisterUserAuthSignUpPost$Params } from '../fn/authentificate/register-user-auth-sign-up-post';
+import {
+  authorizeByTgAuthTelegramSignInPost,
+  AuthorizeByTgAuthTelegramSignInPost$Params,
+} from '../fn/authentificate/authorize-by-tg-auth-telegram-sign-in-post';
+import {
+  authorizeUserAuthSignInPost,
+  AuthorizeUserAuthSignInPost$Params,
+} from '../fn/authentificate/authorize-user-auth-sign-in-post';
+import {
+  checkUserAuthCheckGet,
+  CheckUserAuthCheckGet$Params,
+} from '../fn/authentificate/check-user-auth-check-get';
+import {
+  registerBotAuthTelegramSignUpPost,
+  RegisterBotAuthTelegramSignUpPost$Params,
+} from '../fn/authentificate/register-bot-auth-telegram-sign-up-post';
+import {
+  registerUserAuthSignUpPost,
+  RegisterUserAuthSignUpPost$Params,
+} from '../fn/authentificate/register-user-auth-sign-up-post';
 
 @Injectable({ providedIn: 'root' })
 export class AuthentificateService extends BaseService {

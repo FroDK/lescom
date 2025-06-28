@@ -7,18 +7,26 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
+import { BaseService } from '../base-service';
 import { StrictHttpResponse } from '../strict-http-response';
 
-import { createTaskTypeTasksTypesPost } from '../fn/task-types/create-task-type-tasks-types-post';
-import { CreateTaskTypeTasksTypesPost$Params } from '../fn/task-types/create-task-type-tasks-types-post';
-import { deleteTaskTypeTasksTypesIdDelete } from '../fn/task-types/delete-task-type-tasks-types-id-delete';
-import { DeleteTaskTypeTasksTypesIdDelete$Params } from '../fn/task-types/delete-task-type-tasks-types-id-delete';
-import { getTaskTypesAndStagesTasksTypesGet } from '../fn/task-types/get-task-types-and-stages-tasks-types-get';
-import { GetTaskTypesAndStagesTasksTypesGet$Params } from '../fn/task-types/get-task-types-and-stages-tasks-types-get';
-import { updateTaskTypeTasksTypesPatch } from '../fn/task-types/update-task-type-tasks-types-patch';
-import { UpdateTaskTypeTasksTypesPatch$Params } from '../fn/task-types/update-task-type-tasks-types-patch';
+import {
+  createTaskTypeTasksTypesPost,
+  CreateTaskTypeTasksTypesPost$Params,
+} from '../fn/task-types/create-task-type-tasks-types-post';
+import {
+  deleteTaskTypeTasksTypesIdDelete,
+  DeleteTaskTypeTasksTypesIdDelete$Params,
+} from '../fn/task-types/delete-task-type-tasks-types-id-delete';
+import {
+  getTaskTypesAndStagesTasksTypesGet,
+  GetTaskTypesAndStagesTasksTypesGet$Params,
+} from '../fn/task-types/get-task-types-and-stages-tasks-types-get';
+import {
+  updateTaskTypeTasksTypesPatch,
+  UpdateTaskTypeTasksTypesPatch$Params,
+} from '../fn/task-types/update-task-type-tasks-types-patch';
 
 @Injectable({ providedIn: 'root' })
 export class TaskTypesService extends BaseService {

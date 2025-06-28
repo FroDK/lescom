@@ -7,16 +7,22 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
+import { BaseService } from '../base-service';
 import { StrictHttpResponse } from '../strict-http-response';
 
-import { createCommentAsTaskCommentsPost } from '../fn/create-comment-as-task-comments-post';
-import { CreateCommentAsTaskCommentsPost$Params } from '../fn/create-comment-as-task-comments-post';
-import { getCommentPhotosByObjectCommentsByObjectObjectIdGet } from '../fn/get-comment-photos-by-object-comments-by-object-object-id-get';
-import { GetCommentPhotosByObjectCommentsByObjectObjectIdGet$Params } from '../fn/get-comment-photos-by-object-comments-by-object-object-id-get';
-import { getCommentsByTaskCommentsByTaskTaskIdGet } from '../fn/get-comments-by-task-comments-by-task-task-id-get';
-import { GetCommentsByTaskCommentsByTaskTaskIdGet$Params } from '../fn/get-comments-by-task-comments-by-task-task-id-get';
+import {
+  createCommentAsTaskCommentsPost,
+  CreateCommentAsTaskCommentsPost$Params,
+} from '../fn/create-comment-as-task-comments-post';
+import {
+  getCommentPhotosByObjectCommentsByObjectObjectIdGet,
+  GetCommentPhotosByObjectCommentsByObjectObjectIdGet$Params,
+} from '../fn/get-comment-photos-by-object-comments-by-object-object-id-get';
+import {
+  getCommentsByTaskCommentsByTaskTaskIdGet,
+  GetCommentsByTaskCommentsByTaskTaskIdGet$Params,
+} from '../fn/get-comments-by-task-comments-by-task-task-id-get';
 
 @Injectable({ providedIn: 'root' })
 export class Service extends BaseService {

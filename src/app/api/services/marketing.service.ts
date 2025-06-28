@@ -7,14 +7,18 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
+import { BaseService } from '../base-service';
 import { StrictHttpResponse } from '../strict-http-response';
 
-import { getManagerListMarketingManagersGet } from '../fn/marketing/get-manager-list-marketing-managers-get';
-import { GetManagerListMarketingManagersGet$Params } from '../fn/marketing/get-manager-list-marketing-managers-get';
-import { getUtmListMarketingUtmGet } from '../fn/marketing/get-utm-list-marketing-utm-get';
-import { GetUtmListMarketingUtmGet$Params } from '../fn/marketing/get-utm-list-marketing-utm-get';
+import {
+  getManagerListMarketingManagersGet,
+  GetManagerListMarketingManagersGet$Params,
+} from '../fn/marketing/get-manager-list-marketing-managers-get';
+import {
+  getUtmListMarketingUtmGet,
+  GetUtmListMarketingUtmGet$Params,
+} from '../fn/marketing/get-utm-list-marketing-utm-get';
 
 @Injectable({ providedIn: 'root' })
 export class MarketingService extends BaseService {

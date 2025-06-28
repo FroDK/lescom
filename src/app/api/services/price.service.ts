@@ -7,14 +7,18 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
+import { BaseService } from '../base-service';
 import { StrictHttpResponse } from '../strict-http-response';
 
-import { createBuyerItemPricePost } from '../fn/price/create-buyer-item-price-post';
-import { CreateBuyerItemPricePost$Params } from '../fn/price/create-buyer-item-price-post';
-import { getBuyerItemsPriceTypeIdGet } from '../fn/price/get-buyer-items-price-type-id-get';
-import { GetBuyerItemsPriceTypeIdGet$Params } from '../fn/price/get-buyer-items-price-type-id-get';
+import {
+  createBuyerItemPricePost,
+  CreateBuyerItemPricePost$Params,
+} from '../fn/price/create-buyer-item-price-post';
+import {
+  getBuyerItemsPriceTypeIdGet,
+  GetBuyerItemsPriceTypeIdGet$Params,
+} from '../fn/price/get-buyer-items-price-type-id-get';
 
 @Injectable({ providedIn: 'root' })
 export class PriceService extends BaseService {

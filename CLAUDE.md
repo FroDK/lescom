@@ -25,6 +25,15 @@ This is an Angular 20 application with Server-Side Rendering (SSR) using Angular
 - `pnpm run format` - Format code with Prettier
 - `pnpm run format:check` - Check if code is formatted
 
+### API Generation
+- `pnpm run codegen` - Regenerate API client from OpenAPI spec
+- `pnpm run fix-api` - Fix API generation issues (runs automatically after codegen)
+
+### Additional Scripts
+- `ng` - Angular CLI commands
+- `pnpm run semantic-release` - Manual semantic release (usually run by CI)
+- `pnpm run prepare` - Husky git hooks setup
+
 ## Git Commit Guidelines
 
 ### Conventional Commits
@@ -584,3 +593,133 @@ The project enforces strict TypeScript settings:
 - Component style budget: 4kB
 - Production builds use optimization and minification
 - Source maps disabled in production
+
+## Available MCP Servers
+
+Claude Code has access to several MCP (Model Context Protocol) servers that provide additional capabilities beyond the basic tools. These servers extend Claude's functionality for specific use cases.
+
+### GitHub Server (`mcp__github-server__*`)
+Provides comprehensive GitHub integration for repository management, issues, pull requests, and code operations.
+
+**Available Functions:**
+- **Repository Management**: Create, fork, search repositories
+- **File Operations**: Get file contents, create/update files, push multiple files
+- **Branch Management**: Create branches, list commits
+- **Issues**: Create, list, update, get issues, add comments, search issues
+- **Pull Requests**: Create, list, get, merge PRs, manage reviews, get files/status/comments
+- **Code Search**: Search code across repositories
+- **User Search**: Find GitHub users
+
+**Usage Examples:**
+```typescript
+// Search for repositories
+mcp__github-server__search_repositories({ query: "angular ssr" })
+
+// Create a new issue
+mcp__github-server__create_issue({ 
+  owner: "username", 
+  repo: "project", 
+  title: "Bug report",
+  body: "Description of the issue" 
+})
+
+// Get file contents
+mcp__github-server__get_file_contents({
+  owner: "username",
+  repo: "project", 
+  path: "src/app/component.ts"
+})
+```
+
+### Context7 Library Documentation (`mcp__context7__*`)
+Provides access to up-to-date documentation for libraries and frameworks.
+
+**Available Functions:**
+- **Library Resolution**: `resolve-library-id` - Convert library names to Context7 IDs
+- **Documentation Fetch**: `get-library-docs` - Retrieve comprehensive library documentation
+
+**Usage Examples:**
+```typescript
+// First resolve the library ID
+mcp__context7__resolve-library-id({ libraryName: "Angular" })
+
+// Then get documentation with the resolved ID
+mcp__context7__get-library-docs({ 
+  context7CompatibleLibraryID: "/angular/angular",
+  topic: "routing",
+  tokens: 10000
+})
+```
+
+### Playwright Browser Automation (`mcp__playwright__*`)
+Enables browser automation for testing, screenshots, and web interactions.
+
+**Available Functions:**
+- **Browser Control**: Install, close, resize, navigate (back/forward)
+- **Page Interaction**: Click, type, hover, drag, select options
+- **Content Capture**: Screenshots, snapshots, PDF generation
+- **Tab Management**: List, create, select, close tabs
+- **Debugging**: Console messages, network requests, handle dialogs
+- **Test Generation**: Generate Playwright test code
+- **File Operations**: Upload files
+- **Waiting**: Wait for elements, text, or time
+
+**Usage Examples:**
+```typescript
+// Navigate to a page
+mcp__playwright__browser_navigate({ url: "https://example.com" })
+
+// Take a screenshot
+mcp__playwright__browser_take_screenshot({ filename: "page.png" })
+
+// Click an element
+mcp__playwright__browser_click({ 
+  element: "Submit button",
+  ref: "button[type='submit']" 
+})
+
+// Generate a test
+mcp__playwright__browser_generate_playwright_test({
+  name: "Login Test",
+  description: "Test user login functionality",
+  steps: ["Navigate to login page", "Enter credentials", "Click submit"]
+})
+```
+
+### MCP Server Guidelines
+
+1. **Always prefer MCP tools** when available over basic tools for specialized tasks
+2. **Use appropriate namespacing** - all MCP functions are prefixed with `mcp__<server-name>__`
+3. **Check function signatures** - MCP functions have specific parameter requirements
+4. **Combine MCP servers** - Use multiple servers together for complex workflows
+5. **Error handling** - MCP functions may have different error patterns than basic tools
+
+### Common MCP Workflows
+
+**GitHub + Documentation Workflow:**
+```typescript
+// 1. Search for a repository
+mcp__github-server__search_repositories({ query: "next.js" })
+
+// 2. Get documentation for the library
+mcp__context7__resolve-library-id({ libraryName: "Next.js" })
+mcp__context7__get-library-docs({ context7CompatibleLibraryID: "/vercel/next.js" })
+
+// 3. Create an issue with documentation insights
+mcp__github-server__create_issue({ /* issue details */ })
+```
+
+**Browser Testing + GitHub Workflow:**
+```typescript
+// 1. Navigate to application
+mcp__playwright__browser_navigate({ url: "http://localhost:4200" })
+
+// 2. Take screenshot of current state
+mcp__playwright__browser_take_screenshot({ filename: "before.png" })
+
+// 3. Generate test code
+mcp__playwright__browser_generate_playwright_test({ /* test details */ })
+
+// 4. Create PR with test code
+mcp__github-server__create_pull_request({ /* PR details */ })
+```

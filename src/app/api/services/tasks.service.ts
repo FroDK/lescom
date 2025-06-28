@@ -7,20 +7,27 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
+import { BaseService } from '../base-service';
 import { StrictHttpResponse } from '../strict-http-response';
 
-import { createTaskTasksPost } from '../fn/tasks/create-task-tasks-post';
-import { CreateTaskTasksPost$Params } from '../fn/tasks/create-task-tasks-post';
-import { deleteTaskEndpointTasksTaskIdDelete } from '../fn/tasks/delete-task-endpoint-tasks-task-id-delete';
-import { DeleteTaskEndpointTasksTaskIdDelete$Params } from '../fn/tasks/delete-task-endpoint-tasks-task-id-delete';
-import { getTaskByIdTasksTaskIdGet } from '../fn/tasks/get-task-by-id-tasks-task-id-get';
-import { GetTaskByIdTasksTaskIdGet$Params } from '../fn/tasks/get-task-by-id-tasks-task-id-get';
-import { readTasksTasksGet } from '../fn/tasks/read-tasks-tasks-get';
-import { ReadTasksTasksGet$Params } from '../fn/tasks/read-tasks-tasks-get';
-import { updateTaskEndpointTasksTaskIdPatch } from '../fn/tasks/update-task-endpoint-tasks-task-id-patch';
-import { UpdateTaskEndpointTasksTaskIdPatch$Params } from '../fn/tasks/update-task-endpoint-tasks-task-id-patch';
+import {
+  createTaskTasksPost,
+  CreateTaskTasksPost$Params,
+} from '../fn/tasks/create-task-tasks-post';
+import {
+  deleteTaskEndpointTasksTaskIdDelete,
+  DeleteTaskEndpointTasksTaskIdDelete$Params,
+} from '../fn/tasks/delete-task-endpoint-tasks-task-id-delete';
+import {
+  getTaskByIdTasksTaskIdGet,
+  GetTaskByIdTasksTaskIdGet$Params,
+} from '../fn/tasks/get-task-by-id-tasks-task-id-get';
+import { readTasksTasksGet, ReadTasksTasksGet$Params } from '../fn/tasks/read-tasks-tasks-get';
+import {
+  updateTaskEndpointTasksTaskIdPatch,
+  UpdateTaskEndpointTasksTaskIdPatch$Params,
+} from '../fn/tasks/update-task-endpoint-tasks-task-id-patch';
 
 @Injectable({ providedIn: 'root' })
 export class TasksService extends BaseService {

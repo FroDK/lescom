@@ -222,7 +222,10 @@
             <div class="grid grid-cols-2 gap-3 text-xs">
               <div class="flex items-center gap-2">
                 <span class="font-medium">Valid:</span>
-                <span class="badge" [class]="demoForm.valid ? 'badge-success' : 'badge-destructive'">
+                <span
+                  class="badge"
+                  [class]="demoForm.valid ? 'badge-success' : 'badge-destructive'"
+                >
                   {{ demoForm.valid ? 'Yes' : 'No' }}
                 </span>
               </div>
@@ -245,11 +248,13 @@
                 </span>
               </div>
             </div>
-            
+
             @if (demoForm.value | json; as formValue) {
               <div class="mt-3">
                 <span class="text-xs font-medium">Current Values:</span>
-                <pre class="text-xs mt-1 p-2 bg-background rounded overflow-x-auto">{{ formValue }}</pre>
+                <pre class="text-xs mt-1 p-2 bg-background rounded overflow-x-auto">{{
+                  formValue
+                }}</pre>
               </div>
             }
           </div>

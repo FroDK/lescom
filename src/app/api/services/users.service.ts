@@ -7,20 +7,27 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
+import { BaseService } from '../base-service';
 import { StrictHttpResponse } from '../strict-http-response';
 
-import { deleteUserUsersUserIdDelete } from '../fn/users/delete-user-users-user-id-delete';
-import { DeleteUserUsersUserIdDelete$Params } from '../fn/users/delete-user-users-user-id-delete';
-import { getAllRolesUsersRolesGet } from '../fn/users/get-all-roles-users-roles-get';
-import { GetAllRolesUsersRolesGet$Params } from '../fn/users/get-all-roles-users-roles-get';
-import { profileUserUsersIdGet } from '../fn/users/profile-user-users-id-get';
-import { ProfileUserUsersIdGet$Params } from '../fn/users/profile-user-users-id-get';
-import { updateUserUsersUserIdPatch } from '../fn/users/update-user-users-user-id-patch';
-import { UpdateUserUsersUserIdPatch$Params } from '../fn/users/update-user-users-user-id-patch';
-import { userListUsersGet } from '../fn/users/user-list-users-get';
-import { UserListUsersGet$Params } from '../fn/users/user-list-users-get';
+import {
+  deleteUserUsersUserIdDelete,
+  DeleteUserUsersUserIdDelete$Params,
+} from '../fn/users/delete-user-users-user-id-delete';
+import {
+  getAllRolesUsersRolesGet,
+  GetAllRolesUsersRolesGet$Params,
+} from '../fn/users/get-all-roles-users-roles-get';
+import {
+  profileUserUsersIdGet,
+  ProfileUserUsersIdGet$Params,
+} from '../fn/users/profile-user-users-id-get';
+import {
+  updateUserUsersUserIdPatch,
+  UpdateUserUsersUserIdPatch$Params,
+} from '../fn/users/update-user-users-user-id-patch';
+import { userListUsersGet, UserListUsersGet$Params } from '../fn/users/user-list-users-get';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService extends BaseService {
