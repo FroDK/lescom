@@ -7,17 +7,12 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:lescom": "node dist/lescom/server/server.mjs"
-  },
-  "prettier": {
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
+    "serve:ssr:lescom": "node dist/lescom/server/server.mjs",
+    "lint": "eslint \"src/**/*.{ts,js}\" --max-warnings 0",
+    "lint:fix": "eslint \"src/**/*.{ts,js}\" --fix --max-warnings 0",
+    "format": "prettier --write \"src/**/*.{ts,js,html,css,scss,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,js,html,css,scss,json}\"",
+    "prepare": "husky"
   },
   "private": true,
   "dependencies": {
@@ -37,15 +32,30 @@
     "@angular/build": "^20.0.4",
     "@angular/cli": "^20.0.4",
     "@angular/compiler-cli": "^20.0.0",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.30.0",
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
+    "@typescript-eslint/eslint-plugin": "^8.35.0",
+    "@typescript-eslint/parser": "^8.35.0",
+    "eslint": "^9.30.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.1",
+    "husky": "^9.1.7",
     "jasmine-core": "~5.7.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-openapi-gen": "^0.53.0",
+    "prettier": "^3.6.2",
     "typescript": "~5.8.2"
   }
 }
