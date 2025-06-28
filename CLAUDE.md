@@ -83,6 +83,45 @@ Husky is configured to run these checks automatically:
 
 The hooks will prevent commits if linting fails or commit messages don't follow the convention.
 
+## API Client
+
+The project includes a generated Angular API client in `src/app/api/` created using ng-openapi-gen from OpenAPI specification.
+
+### API Generation
+- **Generator**: ng-openapi-gen 
+- **Configuration**: `ng-openapi-gen.json`
+- **Source**: OpenAPI spec from external endpoint
+- **Output**: `src/app/api/`
+
+### API Structure
+```
+src/app/api/
+├── services/           # Service classes for each API endpoint group
+│   ├── authentificate.service.ts
+│   ├── marketing.service.ts
+│   ├── price.service.ts
+│   ├── tasks.service.ts
+│   └── users.service.ts
+├── models/            # TypeScript interfaces for API data
+├── fn/                # Functional API calls organized by feature
+└── api-configuration.ts # API base configuration
+```
+
+### Available API Features
+- **Authentication**: User/bot registration, authorization, Telegram auth
+- **Tasks**: CRUD operations, stages, types, comments  
+- **Users**: Profile management, roles, user operations
+- **Marketing**: Manager and UTM tracking
+- **Price**: Buyer items and pricing
+
+### API Usage
+Import services from `src/app/api/services` and inject them into components:
+```typescript
+import { TasksService } from '../api/services/tasks.service';
+
+constructor(private tasksService = inject(TasksService)) {}
+```
+
 ## Architecture & Code Organization
 
 ### Key Technical Decisions

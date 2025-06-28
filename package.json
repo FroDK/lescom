@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:lescom": "node dist/lescom/server/server.mjs",
+    "codegen": "ng-openapi-gen",
     "lint": "eslint \"src/**/*.{ts,js}\" --max-warnings 0",
     "lint:fix": "eslint \"src/**/*.{ts,js}\" --fix --max-warnings 0",
     "format": "prettier --write \"src/**/*.{ts,js,html,css,scss,json}\"",
@@ -16,6 +17,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/cdk": "^20.0.4",
     "@angular/common": "^20.0.0",
     "@angular/compiler": "^20.0.0",
     "@angular/core": "^20.0.0",
@@ -25,6 +27,7 @@
     "@angular/router": "^20.0.0",
     "@angular/ssr": "^20.0.4",
     "express": "^5.1.0",
+    "lodash-es": "^4.17.21",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
@@ -36,6 +39,7 @@
     "@commitlint/config-conventional": "^19.8.1",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.30.0",
+    "@openapitools/openapi-generator-cli": "^2.21.0",
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
