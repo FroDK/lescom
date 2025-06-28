@@ -44,7 +44,7 @@ jobs:
           pnpm run format:check
 
       - name: Run tests
-        run: ng test --watch=false --browsers=ChromeHeadless
+        run: npx ng test --watch=false --browsers=ChromeHeadless
 
       - name: Build project
         run: pnpm run build
