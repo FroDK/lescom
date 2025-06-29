@@ -1,4 +1,4 @@
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
@@ -10,6 +10,7 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { environment } from '../environments/environment';
 import { ApiModule } from './api/api.module';
 import { routes } from './app.routes';
+import { authInterceptor } from './interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])),
     ApiModule.forRoot({ rootUrl: environment.apiUrl }).providers || [],
   ],
 };

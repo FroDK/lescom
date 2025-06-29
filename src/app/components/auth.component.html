@@ -48,10 +48,14 @@
           mat-raised-button
           color="primary"
           type="submit"
-          [disabled]="isFormInvalid"
+          [disabled]="isFormInvalid || isLoading()"
           class="submit-button"
         >
-          Sign In
+          @if (isLoading()) {
+            <mat-spinner diameter="20" class="button-spinner"></mat-spinner>
+          } @else {
+            Sign In
+          }
         </button>
       </form>
     </mat-card-content>

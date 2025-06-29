@@ -60,6 +60,10 @@
     border-radius: 8px;
     font-weight: 500;
     font-size: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:disabled {
       background-color: var(--mat-sys-surface-variant);
@@ -79,6 +83,11 @@
       &:active {
         transform: translateY(1px);
       }
+    }
+
+    .button-spinner {
+      display: inline-block;
+      margin: 0 auto;
     }
   }
 }
