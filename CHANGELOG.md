@@ -1,3 +1,21 @@
+## [1.2.0](https://github.com/FroDK/lescom/compare/v1.1.0...v1.2.0) (2025-06-29)
+
+### ⚠ BREAKING CHANGES
+
+* Custom UI component library removed in favor of Angular Material
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+
+### 🚀 Features
+
+* add authentication component with Material UI and forest theme ([889b2cf](https://github.com/FroDK/lescom/commit/889b2cf5e4a7a0b5bd5767993f0af5503d8186f4))
+
+### 📦 Code Refactoring
+
+* remove unused UI components and update project structure ([b881c99](https://github.com/FroDK/lescom/commit/b881c99f4c864b06fd89e08868f7cc3cec56c866))
+
 ## [1.1.0](https://github.com/FroDK/lescom/compare/v1.0.0...v1.1.0) (2025-06-28)
 
 ### 🚀 Features
