@@ -1,5 +1,16 @@
 # Lescom
 
+[![CI](https://github.com/FroDK/lescom/actions/workflows/ci.yml/badge.svg)](https://github.com/FroDK/lescom/actions/workflows/ci.yml)
+[![Release](https://github.com/FroDK/lescom/actions/workflows/release.yml/badge.svg)](https://github.com/FroDK/lescom/actions/workflows/release.yml)
+[![codecov](https://codecov.io/gh/FroDK/lescom/branch/main/graph/badge.svg)](https://codecov.io/gh/FroDK/lescom)
+[![License](https://img.shields.io/github/license/FroDK/lescom)](LICENSE)
+[![Angular](https://img.shields.io/badge/Angular-20.0.4-red?logo=angular)](https://angular.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Material UI](https://img.shields.io/badge/Material_UI-20.0.4-0081CB?logo=material-ui)](https://material.angular.io/)
+[![Last Commit](https://img.shields.io/github/last-commit/FroDK/lescom)](https://github.com/FroDK/lescom/commits/main)
+
+> Modern Angular 20 application with Server-Side Rendering (SSR), Material UI, and comprehensive authentication system.
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.4.
 
 ## Development server
@@ -7,7 +18,7 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 To start a local development server, run:
 
 ```bash
-ng serve
+pnpm start
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
@@ -31,7 +42,7 @@ ng generate --help
 To build the project run:
 
 ```bash
-ng build
+pnpm run build
 ```
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
@@ -41,7 +52,7 @@ This will compile your project and store the build artifacts in the `dist/` dire
 To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
 ```bash
-ng test
+pnpm test
 ```
 
 ## Running end-to-end tests
