@@ -1,3 +1,4 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -5,9 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AuthComponent } from './auth.component';
 
@@ -134,9 +134,7 @@ describe('AuthComponent', () => {
     });
 
     it('should change password input type when toggled', () => {
-      const passwordInput = fixture.debugElement.query(
-        By.css('input[formControlName="password"]')
-      );
+      const passwordInput = fixture.debugElement.query(By.css('input[formControlName="password"]'));
       expect(passwordInput.nativeElement.type).toBe('password');
 
       component.togglePasswordVisibility();
@@ -145,9 +143,7 @@ describe('AuthComponent', () => {
     });
 
     it('should change icon when password visibility is toggled', () => {
-      const toggleButton = fixture.debugElement.query(
-        By.css('button[matSuffix]')
-      );
+      const toggleButton = fixture.debugElement.query(By.css('button[matSuffix]'));
       const icon = toggleButton.query(By.css('mat-icon'));
       expect(icon.nativeElement.textContent.trim()).toBe('visibility_off');
 
@@ -196,9 +192,7 @@ describe('AuthComponent', () => {
 
   describe('User Interactions', () => {
     it('should type in login field', () => {
-      const loginInput = fixture.debugElement.query(
-        By.css('input[formControlName="login"]')
-      );
+      const loginInput = fixture.debugElement.query(By.css('input[formControlName="login"]'));
       const inputElement = loginInput.nativeElement;
 
       inputElement.value = 'testuser';
@@ -209,9 +203,7 @@ describe('AuthComponent', () => {
     });
 
     it('should type in password field', () => {
-      const passwordInput = fixture.debugElement.query(
-        By.css('input[formControlName="password"]')
-      );
+      const passwordInput = fixture.debugElement.query(By.css('input[formControlName="password"]'));
       const inputElement = passwordInput.nativeElement;
 
       inputElement.value = 'testpass';
@@ -222,9 +214,7 @@ describe('AuthComponent', () => {
     });
 
     it('should enable submit button when form is valid', () => {
-      const submitButton = fixture.debugElement.query(
-        By.css('button[type="submit"]')
-      );
+      const submitButton = fixture.debugElement.query(By.css('button[type="submit"]'));
       expect(submitButton.nativeElement.disabled).toBe(true);
 
       component.authForm.patchValue({
@@ -244,9 +234,7 @@ describe('AuthComponent', () => {
       });
       fixture.detectChanges();
 
-      const submitButton = fixture.debugElement.query(
-        By.css('button[type="submit"]')
-      );
+      const submitButton = fixture.debugElement.query(By.css('button[type="submit"]'));
       submitButton.nativeElement.click();
 
       expect(component.onSubmit).toHaveBeenCalled();
@@ -254,9 +242,7 @@ describe('AuthComponent', () => {
 
     it('should call togglePasswordVisibility when visibility button is clicked', () => {
       spyOn(component, 'togglePasswordVisibility');
-      const toggleButton = fixture.debugElement.query(
-        By.css('button[matSuffix]')
-      );
+      const toggleButton = fixture.debugElement.query(By.css('button[matSuffix]'));
       toggleButton.nativeElement.click();
 
       expect(component.togglePasswordVisibility).toHaveBeenCalled();
@@ -275,23 +261,17 @@ describe('AuthComponent', () => {
     });
 
     it('should render login input field', () => {
-      const loginField = fixture.debugElement.query(
-        By.css('input[formControlName="login"]')
-      );
+      const loginField = fixture.debugElement.query(By.css('input[formControlName="login"]'));
       expect(loginField).toBeTruthy();
     });
 
     it('should render password input field', () => {
-      const passwordField = fixture.debugElement.query(
-        By.css('input[formControlName="password"]')
-      );
+      const passwordField = fixture.debugElement.query(By.css('input[formControlName="password"]'));
       expect(passwordField).toBeTruthy();
     });
 
     it('should render submit button', () => {
-      const submitButton = fixture.debugElement.query(
-        By.css('button[type="submit"]')
-      );
+      const submitButton = fixture.debugElement.query(By.css('button[type="submit"]'));
       expect(submitButton).toBeTruthy();
       expect(submitButton.nativeElement.textContent.trim()).toBe('Sign In');
     });

@@ -1,25 +1,26 @@
-
 // Forest Theme for Angular Material
 // Custom forest-inspired light theme with natural colors
 @use '@angular/material' as mat;
 @use './app/theme/forest-theme-colors' as forest;
 
 html {
-  @include mat.theme((
-    color: (
-      theme-type: light,
-      primary: forest.$primary-palette,
-      tertiary: forest.$tertiary-palette,
-    ),
-    typography: (
-      plain-family: 'Roboto',
-      brand-family: 'Roboto',
-      bold-weight: 600,
-      medium-weight: 500,
-      regular-weight: 400,
-    ),
-    density: 0,
-  ));
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: forest.$primary-palette,
+        tertiary: forest.$tertiary-palette,
+      ),
+      typography: (
+        plain-family: 'Roboto',
+        brand-family: 'Roboto',
+        bold-weight: 600,
+        medium-weight: 500,
+        regular-weight: 400,
+      ),
+      density: 0,
+    )
+  );
 
   // Apply high contrast overrides when user prefers more contrast
   @media (prefers-contrast: more) {
@@ -30,41 +31,44 @@ html {
 // Forest-specific custom CSS variables
 :root {
   // Forest canopy and deep shadows
-  --forest-canopy: #1B4332;
+  --forest-canopy: #1b4332;
   --forest-deep: #0f1e0f;
-  
+
   // Earth and soil tones
-  --forest-floor: #8B5A3C;
+  --forest-floor: #8b5a3c;
   --forest-bark: #7d4f35;
-  
+
   // Light and misty atmospheres
-  --morning-mist: #F0F8E8;
+  --morning-mist: #f0f8e8;
   --forest-light: #f7ffef;
-  
+
   // Sunlight and warm accents
-  --sunlight: #FFE135;
+  --sunlight: #ffe135;
   --warm-glow: #ffd700;
-  
+
   // Organic shadows (earth-toned instead of gray)
   --organic-shadow: rgba(43, 50, 41, 0.15);
   --organic-shadow-light: rgba(43, 50, 41, 0.08);
 }
 
 // Global styles with forest theme
-html, body { 
-  height: 100%; 
+html,
+body {
+  height: 100%;
   background: var(--mat-sys-background);
   color: var(--mat-sys-on-background);
 }
 
-body { 
-  margin: 0; 
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 // Enhance Material components with organic feel
 .mat-mdc-card {
-  box-shadow: 0 2px 8px var(--organic-shadow), 0 1px 3px var(--organic-shadow-light) !important;
+  box-shadow:
+    0 2px 8px var(--organic-shadow),
+    0 1px 3px var(--organic-shadow-light) !important;
 }
 
 .mat-mdc-button-base {

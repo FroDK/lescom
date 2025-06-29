@@ -11,20 +11,22 @@
   width: 100%;
   max-width: 400px;
   padding: 1.5rem;
-  box-shadow: 0 4px 12px var(--organic-shadow), 0 2px 6px var(--organic-shadow-light);
+  box-shadow:
+    0 4px 12px var(--organic-shadow),
+    0 2px 6px var(--organic-shadow-light);
   border-radius: 12px;
   background: var(--mat-sys-surface);
-  
+
   .mat-mdc-card-header {
     padding-bottom: 1rem;
-    
+
     .mat-mdc-card-title {
       color: var(--mat-sys-primary);
       font-size: 1.75rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
     }
-    
+
     .mat-mdc-card-subtitle {
       color: var(--mat-sys-on-surface-variant);
       font-size: 0.875rem;
@@ -37,43 +39,43 @@
   flex-direction: column;
   gap: 1.5rem;
   padding-top: 1rem;
-  
+
   .mat-mdc-form-field {
     width: 100%;
-    
+
     .mat-mdc-text-field-wrapper {
       border-radius: 8px;
     }
-    
+
     &.mat-form-field-invalid {
       .mat-mdc-form-field-outline {
         border-color: var(--mat-sys-error);
       }
     }
   }
-  
+
   .submit-button {
     margin-top: 1rem;
     padding: 0.75rem 2rem;
     border-radius: 8px;
     font-weight: 500;
     font-size: 1rem;
-    
+
     &:disabled {
       background-color: var(--mat-sys-surface-variant);
       color: var(--mat-sys-on-surface-variant);
     }
-    
+
     &:not(:disabled) {
       background-color: var(--mat-sys-primary);
       color: var(--mat-sys-on-primary);
-      
+
       &:hover {
         background-color: var(--mat-sys-primary);
         filter: brightness(1.1);
         box-shadow: 0 2px 8px var(--organic-shadow);
       }
-      
+
       &:active {
         transform: translateY(1px);
       }
@@ -86,16 +88,20 @@
   .auth-container {
     background: linear-gradient(135deg, var(--morning-mist) 0%, var(--forest-light) 100%);
   }
-  
+
   .auth-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px var(--organic-shadow), 0 3px 8px var(--organic-shadow-light);
+      box-shadow:
+        0 6px 16px var(--organic-shadow),
+        0 3px 8px var(--organic-shadow-light);
     }
   }
-  
+
   .submit-button {
     transition: all 0.2s ease;
   }
