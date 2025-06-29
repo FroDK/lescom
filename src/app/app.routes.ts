@@ -3,11 +3,10 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/ui-kit',
-    pathMatch: 'full',
+    loadComponent: () => import('./components/auth.component').then((m) => m.AuthComponent),
   },
   {
-    path: 'ui-kit',
-    loadComponent: () => import('./pages/ui-kit/ui-kit').then((m) => m.UiKitComponent),
+    path: 'auth',
+    loadComponent: () => import('./components/auth.component').then((m) => m.AuthComponent),
   },
 ];
