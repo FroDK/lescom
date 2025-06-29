@@ -13,7 +13,8 @@
           "inlineTemplate": false,
           "inlineStyle": false,
           "flat": true,
-          "classSuffix": "Component"
+          "classSuffix": "Component",
+          "style": "scss"
         },
         "@schematics/angular:service": {
           "flat": true,
@@ -59,7 +60,7 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
@@ -133,7 +134,7 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ]
           }
         }

@@ -5,6 +5,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 This is an Angular 20 application with Server-Side Rendering (SSR) using Angular Universal. The project uses standalone components with zoneless change detection for optimal performance.
 
+**Key Technologies:**
+- **Angular 20**: Latest Angular with standalone components
+- **Angular Material 20**: Material Design UI components with forest theme
+- **Angular Animations**: Animation support for Material UI components
+- **Static Site Generation (SSG)**: Pre-rendered pages for optimal performance
+- **Forest Theme**: Custom Material 3 color system with nature-inspired design
+- **Reactive Forms**: Form validation and state management
+- **Comprehensive Testing**: Jasmine + Karma with 36+ test coverage
+
 ## Essential Commands
 
 ### Development
@@ -278,12 +287,6 @@ constructor(private tasksService = inject(TasksService)) {}
 ### Lodash ES (`lodash-es`)
 The project uses **lodash-es** for utility functions with ES module support and tree-shaking optimization.
 
-**Installation:**
-```bash
-pnpm add lodash-es
-pnpm add -D @types/lodash-es
-```
-
 **Import Best Practices:**
 ```typescript
 // ✅ Tree-shakable imports (recommended)
@@ -477,241 +480,287 @@ import { isEmpty } from 'lodash-es';
 
 ## Design System & Styling
 
-### Theme Configuration
-The project uses **Tailwind CSS v4** with a custom Supabase-inspired theme located in `src/theme.css`. The theme includes:
+### Material UI Integration
+The project uses **Angular Material** (version 20.0.4) as the primary UI component library with custom theming. The theme configuration is located in `src/styles.scss`.
 
-- **Design System**: Light/dark mode support with CSS custom properties
-- **Color Palette**: Primary green (`#72e3ad`), muted grays, and semantic colors
-- **Typography**: Outfit font family with proper letter spacing
-- **Component Library**: Pre-built button, card, input, and badge styles
+### Hybrid Styling Approach
+The project combines **Material UI** components with **Tailwind CSS v4** for utility classes:
+- **Material UI**: Primary component library for UI elements (buttons, forms, cards, etc.)
+- **Tailwind CSS**: Utility classes for spacing, layout, and custom styling
+- **Tailwind Config**: Located in `tailwind.config.ts` with content paths configured
 
-### Available CSS Classes
+### Forest Theme Configuration
+```scss
+@use '@angular/material' as mat;
+@use './app/theme/forest-theme-colors' as forest;
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: forest.$primary-palette,
+      tertiary: forest.$tertiary-palette,
+    ),
+    typography: (
+      plain-family: 'Roboto',
+      brand-family: 'Roboto',
+      bold-weight: 600,
+      medium-weight: 500,
+      regular-weight: 400,
+    ),
+    density: 0,
+  ));
+
+  // Apply high contrast overrides when user prefers more contrast
+  @media (prefers-contrast: more) {
+    @include forest.high-contrast-overrides(light);
+  }
+}
+```
+
+### Forest Theme Features
+- **Color Palette**: Nature-inspired forest greens (#228B22), earth browns (#8B4513), and moss tones (#9CAF88)
+- **Typography**: Roboto font family with enhanced weight configuration for better hierarchy
+- **Material 3 Compliance**: Generated using Angular Material's M3 theme schematic
+- **High Contrast Support**: Automatic high contrast mode when user prefers increased contrast
+- **Accessibility**: WCAG AA compliant color contrast ratios
+- **Organic Design**: Custom shadows and border-radius for natural feel
+
+### Available Fonts & Icons
+- **Roboto Font**: `https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500`
+- **Material Icons**: `https://fonts.googleapis.com/icon?family=Material+Icons`
+- **Typography Class**: `mat-typography` applied to body element
+
+### Forest Theme Custom Variables
+Additional CSS custom properties for forest-specific styling:
+
+```css
+:root {
+  /* Forest atmosphere colors */
+  --forest-canopy: #1B4332;        /* Deep forest shadows */
+  --forest-deep: #0f1e0f;          /* Deepest forest tones */
+  --forest-floor: #8B5A3C;         /* Earth and soil colors */
+  --forest-bark: #7d4f35;          /* Tree bark tones */
+  
+  /* Light and atmospheric effects */
+  --morning-mist: #F0F8E8;         /* Light, misty backgrounds */
+  --forest-light: #f7ffef;         /* Bright forest clearings */
+  --sunlight: #FFE135;             /* Warm sunlight accents */
+  --warm-glow: #ffd700;            /* Golden hour lighting */
+  
+  /* Organic shadows (earth-toned instead of gray) */
+  --organic-shadow: rgba(43, 50, 41, 0.15);
+  --organic-shadow-light: rgba(43, 50, 41, 0.08);
+}
+```
+
+### Generated Theme Files
+- **Main Theme**: `src/app/theme/forest-theme-colors.scss` - Generated Material 3 color system
+- **Primary Colors**: Forest green tones from #002201 to #ffffff
+- **Secondary Colors**: Earth brown tones from #321200 to #ffffff  
+- **Tertiary Colors**: Moss green tones from #111f05 to #ffffff
+
+### Material UI Components
+Import Angular Material components as needed for the project:
+
+```typescript
+// Example imports for common components
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+```
+
+### Usage Examples
 
 #### Buttons
 ```html
-<button class="btn-primary">Primary Button</button>
-<button class="btn-secondary">Secondary Button</button>
-<button class="btn-destructive">Destructive Button</button>
-<button class="btn-primary btn-sm">Small Button</button>
-<button class="btn-primary btn-lg">Large Button</button>
+<button mat-button>Basic</button>
+<button mat-raised-button color="primary">Primary</button>
+<button mat-stroked-button color="accent">Accent</button>
+<button mat-fab color="warn"><mat-icon>add</mat-icon></button>
+```
+
+#### Form Fields
+```html
+<mat-form-field appearance="outline">
+  <mat-label>Email</mat-label>
+  <input matInput placeholder="Enter your email">
+</mat-form-field>
 ```
 
 #### Cards
 ```html
-<div class="card">
-  <div class="card-header">
-    <h3 class="card-title">Card Title</h3>
-  </div>
-  <div class="card-content">Card content goes here</div>
-</div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Card Title</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    Card content goes here
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Action</button>
+  </mat-card-actions>
+</mat-card>
 ```
 
-#### Form Elements
+#### Icons
 ```html
-<input class="input" placeholder="Enter text..." />
-<input class="input input-error" placeholder="Error state" />
-<input class="input input-success" placeholder="Success state" />
+<mat-icon>home</mat-icon>
+<mat-icon color="primary">favorite</mat-icon>
 ```
 
-#### Badges
-```html
-<span class="badge badge-success">Success</span>
-<span class="badge badge-info">Info</span>
-<span class="badge badge-warning">Warning</span>
-<span class="badge badge-destructive">Error</span>
-```
+### Customization Guidelines
+1. **Theme Extension**: Extend themes in `src/styles.scss` using Material's theming API
+2. **Custom Palettes**: Create custom color palettes using `mat.define-palette()`
+3. **Typography**: Customize typography using `mat.define-typography-config()`
+4. **Component Overrides**: Override component styles using CSS custom properties
+5. **Responsive Design**: Use Material's breakpoint system with Angular CDK Layout
 
-#### Layout Utilities
-```html
-<div class="container-responsive">Responsive container</div>
-<div class="container-md">Medium container</div>
-<div class="container-lg">Large container</div>
-```
+## Material UI & CDK Integration
 
-### Theme Features
-- **Active States**: Buttons include enhanced active states with `rounded-xl` border radius and subtle scaling
-- **Focus Management**: Thin, transparent focus rings (`ring-2 ring-ring/30`)
-- **Dark Mode**: Automatic dark mode with softer text colors (`#d1d5db` instead of pure white)
-- **Transitions**: Smooth `transition-all duration-200` on interactive elements
+### Angular CDK
+The project includes **Angular CDK** (Component Dev Kit) version 20.0.4, which provides powerful utilities for building UI components:
 
-### Styling Guidelines
-1. **Use Theme Classes**: Prefer predefined classes over custom styles
-2. **Consistent Spacing**: Use theme's spacing scale (`--spacing-*`)
-3. **Color Variables**: Reference CSS custom properties (`var(--color-*)`)
-4. **Responsive Design**: Use breakpoint variables (`--breakpoint-*`)
-
-## UI Component Library
-
-The project includes a custom UI component library located in `src/app/ui/` that provides reusable components built on top of the theme system.
-
-### Available Components & Directives
-
-#### Button Directive (`/src/app/ui/button/button.directive.ts`)
-A flexible button directive that enhances native button elements with variant and size support.
-
-**Import:**
 ```typescript
-import { ButtonDirective } from '../ui';
+// Layout utilities
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { MediaMatcher } from '@angular/cdk/layout';
+
+// Overlay utilities  
+import { Overlay } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+
+// A11y utilities
+import { A11yModule } from '@angular/cdk/a11y';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 ```
 
-**Usage:**
-```html
-<button appButton variant="primary" size="default" (pressed)="handleClick()">
-  Click me
-</button>
+### Available Material UI Modules
+Common Material UI modules available for import:
 
-<button appButton variant="secondary" size="sm" [disabled]="isDisabled">
-  Small Button
-</button>
-
-<button appButton variant="destructive" size="lg" class="w-full">
-  Large Destructive Button
-</button>
-```
-
-**Props:**
-- `variant`: `'primary' | 'secondary' | 'destructive'` (default: `'primary'`)
-- `size`: `'sm' | 'default' | 'lg'` (default: `'default'`)
-- `disabled`: `boolean` (default: `false`)
-- `type`: `'button' | 'submit' | 'reset'` (default: `'button'`)
-- Additional CSS classes can be added directly to the button element
-
-**Events:**
-- `(pressed)`: Emitted when button is clicked (if not disabled)
-
-#### Stack Directive (`/src/app/ui/stack/stack.directive.ts`)
-A layout directive that transforms any element into a flexible container with configurable spacing and alignment.
-
-**Import:**
 ```typescript
-import { StackDirective } from '../ui';
+// Core modules
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+// Form modules
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+
+// Navigation modules
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
+
+// Layout modules
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+
+// Data table modules
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+
+// Feedback modules
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 ```
 
-**Usage:**
-```html
-<!-- Horizontal button group -->
-<div appStack direction="row" gap="4" justify="center" align="center">
-  <button appButton variant="primary">Button 1</button>
-  <button appButton variant="secondary">Button 2</button>
-</div>
+### Component Import Pattern
+When using Material UI components in standalone components:
 
-<!-- Vertical form layout -->
-<div appStack direction="column" gap="6">
-  <input class="input" placeholder="Name" />
-  <input class="input" placeholder="Email" />
-  <button appButton variant="primary">Submit</button>
-</div>
-
-<!-- Responsive grid alternative -->
-<div appStack direction="row" gap="4" [wrap]="true" justify="between">
-  <div>Item 1</div>
-  <div>Item 2</div>
-  <div>Item 3</div>
-</div>
-```
-
-**Props:**
-- `direction`: `'row' | 'column' | 'row-reverse' | 'column-reverse'` (default: `'row'`)
-- `gap`: `'0' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10' | '12' | '16' | '20' | '24'` (default: `'4'`)
-- `align`: `'start' | 'center' | 'end' | 'stretch' | 'baseline'` (default: `'center'`)
-- `justify`: `'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'` (default: `'start'`)
-- `wrap`: `boolean` (default: `false`)
-- Additional CSS classes can be added directly to the element
-
-#### Form Field Component (`/src/app/ui/form-field/form-field.component.ts`)
-A comprehensive form field wrapper component that provides labels, hints, error handling, and form control integration.
-
-**Import:**
 ```typescript
-import { FormFieldComponent } from '../ui';
+@Component({
+  selector: 'app-example',
+  imports: [
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    // Add other Material modules as needed
+  ],
+  templateUrl: './example.component.html'
+})
+export class ExampleComponent {
+  // Component logic
+}
 ```
 
-**Usage:**
-```html
-<app-form-field 
-  label="Email Address"
-  hint="We'll never share your email"
-  [required]="true"
-  [control]="emailControl"
-  type="email"
-  placeholder="Enter your email"
-  size="default">
-</app-form-field>
-```
+### Material UI Best Practices
+
+1. **Module Imports**: Import only the Material modules you need in each component
+2. **Theme Consistency**: Use Material's color system (`primary`, `accent`, `warn`)
+3. **Accessibility**: Material components include built-in accessibility features
+4. **Responsive Design**: Use Angular CDK Layout for responsive behavior
+5. **Custom Theming**: Extend themes in `src/styles.scss` using Material's theming API
+
+## Application Components
+
+### Authentication Component (`/src/app/components/auth.component.ts`)
+
+A comprehensive authentication page built with Material UI and reactive forms, featuring forest theme integration.
 
 **Features:**
-- Form control integration with automatic error display
-- Label and hint text support
-- Required field indicators
-- Multiple input types (text, email, password, number, tel, url, search)
-- Size variants (sm, default, lg)
-- Automatic error message generation for common validators
-- Custom error message support
-- Pass-through properties to underlying input component
-- Full ControlValueAccessor implementation
+- **Reactive Forms**: FormBuilder with required validators
+- **Material UI Integration**: Form fields, buttons, cards with forest theme
+- **Desktop Optimized**: Responsive design for desktop screens (1024px+)
+- **Password Toggle**: Visibility toggle with Material icons
+- **SSG Ready**: Pre-rendered static page for optimal performance
+- **Comprehensive Testing**: 36 tests covering all functionality
 
-#### Input Component (`/src/app/ui/input/input.component.ts`)
-A comprehensive form input component with various states and features.
-
-**Import:**
+**Form Configuration:**
 ```typescript
-import { InputComponent } from '../ui';
+this.authForm = this.fb.group({
+  login: ['', Validators.required],
+  password: ['', Validators.required]
+});
 ```
 
-**Features:**
-- Multiple input types (text, email, password, number, etc.)
-- Size variants (sm, default, lg)
-- State variants (default, error, success)
-- Loading state with spinner
-- Password visibility toggle
-- Clearable input for search
-- Icon support (left/right)
-- Full form control support with ControlValueAccessor
+**Material UI Components Used:**
+- `MatFormFieldModule` - Form field containers with outline appearance
+- `MatInputModule` - Input fields with validation states
+- `MatButtonModule` - Submit button with forest theme colors
+- `MatCardModule` - Container with organic shadows
+- `MatIconModule` - Password visibility toggle icon
 
-### UI Component Guidelines
+**Validation Features:**
+- Required field validation for login and password
+- Real-time error message display
+- Form validity state management
+- Submit button disable/enable based on form state
 
-1. **Component Structure**: All UI components follow the standalone component pattern
-2. **Template Files**: Components use separate HTML files (`.html`) instead of inline templates
-3. **Type Safety**: All component props use TypeScript interfaces for better DX
-4. **Theme Integration**: Components leverage the existing theme classes and CSS custom properties
-5. **Flexibility**: Components accept additional CSS classes via the `class` prop
-6. **Accessibility**: Components include proper ARIA attributes and semantic HTML
+**Forest Theme Integration:**
+- Primary forest green colors for buttons and focus states
+- Organic earth-tone shadows instead of standard grays
+- Desktop gradient background with forest atmosphere
+- Custom CSS variables for forest-specific styling
 
-### Creating New UI Components
+**Testing Coverage:**
+- Form initialization and validation logic
+- User interactions (typing, clicking, password toggle)
+- Error handling and message display
+- Component rendering and Material UI integration
+- Edge cases and form state management
+- SSG compatibility testing
 
-When creating new UI components:
-
-1. **Location**: Place in `src/app/ui/` directory
-2. **Naming**: Use PascalCase for class names, kebab-case for selectors
-3. **Structure**: Create separate `.ts` and `.html` files
-4. **Exports**: Export TypeScript interfaces for props
-5. **Theme**: Use existing theme classes and CSS custom properties
-6. **Documentation**: Add component to this CLAUDE.md file
-
-**Current UI component structure:**
+**Usage:**
+```typescript
+// Component is lazy-loaded at /auth route
+// Accessible via: http://localhost:4200/auth
+// Pre-rendered as static HTML for production
 ```
-src/app/ui/
-├── badge/
-│   ├── badge.component.html   # Badge template
-│   ├── badge.component.ts     # Badge component
-│   ├── badge.component.spec.ts # Badge tests
-│   └── index.ts               # Badge exports
-├── button/
-│   ├── button.directive.ts    # Button directive
-│   └── index.ts               # Button exports
-├── form-field/
-│   ├── form-field.component.ts    # Form field component
-│   ├── form-field.component.html  # Form field template
-│   └── index.ts                   # Form field exports
-├── input/
-│   ├── input.component.ts     # Input component
-│   ├── input.component.html   # Input template
-│   └── index.ts               # Input exports
-├── stack/
-│   ├── stack.directive.ts     # Stack directive
-│   └── index.ts               # Stack exports
-└── index.ts                   # Main barrel export
-```
+
 
 ## Architecture & Code Organization
 
@@ -730,7 +779,7 @@ src/
 │   ├── app.config.ts             # Client app configuration
 │   ├── app.config.server.ts      # Server app configuration  
 │   ├── app.routes.ts             # Client-side routes
-│   ├── app.routes.server.ts      # Server-side routes
+│   ├── app.routes.server.ts      # Server-side routes (SSG configuration)
 │   ├── app.spec.ts               # Root component tests
 │   ├── api/                      # Generated API client
 │   │   ├── services/             # Service classes for API endpoints
@@ -775,38 +824,15 @@ src/
 │   │   ├── request-builder.ts    # Request builder utility
 │   │   ├── services.ts           # Service exports
 │   │   └── strict-http-response.ts # HTTP response typing
-│   ├── components/               # Shared components
-│   │   └── environment-info.component.ts
-│   ├── demo/                     # Demo components
-│   │   └── form-field-demo.component.ts
-│   ├── pages/                    # Page components
-│   │   └── ui-kit/               # UI kit showcase page
-│   │       ├── ui-kit.html       # UI kit template
-│   │       ├── ui-kit.ts         # UI kit component
-│   │       └── ui-kit.spec.ts    # UI kit tests
+│   ├── components/               # Application components
+│   │   ├── auth.component.ts     # Authentication page component
+│   │   ├── auth.component.html   # Auth component template
+│   │   ├── auth.component.scss   # Auth component styles (forest theme)
+│   │   └── auth.component.spec.ts # Auth component tests (36 tests)
 │   ├── services/                 # Application services
 │   │   └── environment.service.ts
-│   ├── ui/                       # UI component library
-│   │   ├── badge/                # Badge component
-│   │   │   ├── badge.component.html
-│   │   │   ├── badge.component.ts
-│   │   │   ├── badge.component.spec.ts
-│   │   │   └── index.ts
-│   │   ├── button/               # Button directive
-│   │   │   ├── button.directive.ts
-│   │   │   └── index.ts
-│   │   ├── form-field/           # Form field component
-│   │   │   ├── form-field.component.html
-│   │   │   ├── form-field.component.ts
-│   │   │   └── index.ts
-│   │   ├── input/                # Input component
-│   │   │   ├── input.component.html
-│   │   │   ├── input.component.ts
-│   │   │   └── index.ts
-│   │   ├── stack/                # Stack layout directive
-│   │   │   ├── stack.directive.ts
-│   │   │   └── index.ts
-│   │   └── index.ts              # UI barrel exports
+│   ├── theme/                    # Custom theme files
+│   │   └── forest-theme-colors.scss # Material 3 forest color system
 │   └── utils/                    # Utility functions
 │       ├── class-names.util.ts   # CSS class utility
 │       ├── class-names.util.spec.ts # Class utility tests
@@ -819,8 +845,8 @@ src/
 ├── main.ts                       # Client bootstrap
 ├── main.server.ts                # Server bootstrap
 ├── server.ts                     # Express server for SSR
-├── styles.css                    # Global styles
-└── theme.css                     # Tailwind theme configuration
+├── styles.scss                   # Global styles with forest theme
+└── theme.css                     # Tailwind theme configuration (legacy)
 ```
 
 ### Root Directory Structure
@@ -863,8 +889,6 @@ The project uses TypeScript path mappings for cleaner imports:
 ```typescript
 // tsconfig.app.json & tsconfig.spec.json
 "paths": {
-  "@ui": ["app/ui"],
-  "@ui/*": ["app/ui/*"],
   "@utils": ["app/utils"],
   "@utils/*": ["app/utils/*"]
 }
@@ -872,17 +896,16 @@ The project uses TypeScript path mappings for cleaner imports:
 
 **Usage Examples:**
 ```typescript
-// UI components
-import { ButtonDirective } from '@ui/button';
-import { InputComponent } from '@ui/input';
-import { StackDirective } from '@ui/stack';
-
 // Utility functions
 import { cn } from '@utils';
 import { classNames } from '@utils/class-names.util';
 
 // Specific utilities
 import { cn } from '@utils/class-names.util';
+
+// Material UI components (standard imports)
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 ```
 
 **Path Mapping Benefits:**
@@ -898,6 +921,38 @@ import { cn } from '@utils/class-names.util';
 4. **Service Injection**: Use `inject()` function in constructors or field initializers
 5. **Change Detection**: Call `ChangeDetectorRef.markForCheck()` when needed (zoneless)
 6. **Signal APIs**: ALWAYS use signal-based `input()` and `output()` functions instead of decorator-based `@Input()` and `@Output()` for component properties and events
+
+### Application Routes & SSG Configuration
+
+The project uses Angular's standalone routing with Static Site Generation (SSG) for optimal performance.
+
+#### Client Routes (`app.routes.ts`)
+```typescript
+export const routes: Routes = [
+  {
+    path: '',
+    loadComponent: () => import('./components/auth.component').then(m => m.AuthComponent),
+  },
+  {
+    path: 'auth',
+    loadComponent: () => import('./components/auth.component').then(m => m.AuthComponent),
+  },
+];
+```
+
+#### Server Routes for SSG (`app.routes.server.ts`)
+```typescript
+export const serverRoutes: ServerRoute[] = [
+  { path: '', renderMode: RenderMode.Prerender },
+  { path: 'auth', renderMode: RenderMode.Prerender },
+];
+```
+
+#### Available Routes
+- **`/`** - Authentication page (homepage)
+- **`/auth`** - Authentication page with reactive forms
+
+All routes are pre-rendered at build time for faster loading and better SEO.
 
 ### SSR Considerations
 - Server-specific logic goes in `app.config.server.ts`
